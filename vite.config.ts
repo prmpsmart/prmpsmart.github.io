@@ -1,8 +1,53 @@
-import { defineConfig } from 'vite';
+import { defineConfig, Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
-import CONFIG from './gitprofile.config';
 import { createHtmlPlugin } from 'vite-plugin-html';
+import fs from 'node:fs';
+import path from 'node:path';
+import CONFIG from './portfolio.config';
+
+const ROUTES = [
+  'about',
+  'portfolio',
+  'skills',
+  'experience',
+  'contact',
+  'publications',
+];
+
+/**
+ * GitHub Pages has no SPA rewrites, so copy index.html into a folder per route
+ * (served with 200) and to 404.html for anything else.
+ */
+function spaRoutes(): Plugin {
+  return {
+    name: 'spa-routes',
+    apply: 'build',
+    closeBundle() {
+      const dist = path.resolve(__dirname, 'dist');
+      const html = fs.readFileSync(path.join(dist, 'index.html'));
+      for (const route of ROUTES) {
+        fs.mkdirSync(path.join(dist, route), { recursive: true });
+        fs.writeFileSync(path.join(dist, route, 'index.html'), html);
+      }
+      fs.writeFileSync(path.join(dist, '404.html'), html);
+    },
+  };
+}
+
+const { profile, social, siteUrl, seo } = CONFIG;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: profile.name,
+  alternateName: profile.handle,
+  url: siteUrl,
+  jobTitle: profile.roles[0],
+  email: `mailto:${social.email}`,
+  address: { '@type': 'PostalAddress', addressLocality: profile.location },
+  sameAs: [social.github, social.linkedin],
+  knowsAbout: CONFIG.skills.map((s) => s.name),
+};
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,37 +57,17 @@ export default defineConfig({
     createHtmlPlugin({
       inject: {
         data: {
-          metaTitle: CONFIG.seo.title,
-          metaDescription: CONFIG.seo.description,
-          metaImageURL: CONFIG.seo.imageURL,
+          metaTitle: seo.title,
+          metaDescription: seo.description,
+          metaImageURL: `https://github.com/${profile.githubUsername}.png?size=800`,
+          siteUrl,
+          jsonLd: JSON.stringify(jsonLd),
         },
       },
     }),
-    ...(CONFIG.enablePWA
-      ? [
-          VitePWA({
-            registerType: 'autoUpdate',
-            workbox: {
-              navigateFallback: undefined,
-            },
-            includeAssets: ['logo.png'],
-            manifest: {
-              name: 'Portfolio',
-              short_name: 'Portfolio',
-              description: 'Personal Portfolio',
-              icons: [
-                {
-                  src: 'logo.png',
-                  sizes: '64x64 32x32 24x24 16x16 192x192 512x512',
-                  type: 'image/png',
-                },
-              ],
-            },
-          }),
-        ]
-      : []),
+    // The old GitProfile site registered a service worker. This replaces it with
+    // one that unregisters itself, so returning visitors get the new site.
+    VitePWA({ selfDestroying: true, manifest: false }),
+    spaRoutes(),
   ],
-  define: {
-    CONFIG: CONFIG,
-  },
 });

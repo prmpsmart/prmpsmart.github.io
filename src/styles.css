@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0f1f14;
+  --bg-elevated: #163020;
+  --bg-sidebar: #0b170f;
+  --text: #d2e3c8;
+  --text-muted: #b6c7aa;
+  --accent: #b6c7aa;
+  --accent-warm: #f6e6cb;
+  --accent-deep: #698474;
+  --glass-strong: hsla(95, 21%, 72%, 0.16);
+  --glass-border: hsla(98, 33%, 84%, 0.22);
+}
+
+html {
+  min-height: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent-deep);
+  color: var(--accent-warm);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-deep) transparent;
+}
+
+@layer components {
+  .glass {
+    background: hsla(99, 12%, 54%, 0.3);
+    backdrop-filter: blur(36px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    border: 1px solid hsla(0, 0%, 100%, 0.22);
+    box-shadow:
+      inset 0 1px 0 hsla(0, 0%, 100%, 0.18),
+      0 12px 40px rgba(0, 0, 0, 0.2);
+  }
+
+  .eyebrow {
+    @apply font-mono text-xs uppercase tracking-[0.2em] text-forest-muted;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-full bg-forest-muted px-7 py-3.5 text-sm font-semibold tracking-wide text-black transition hover:bg-forest-text;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 rounded-full border-2 border-forest-muted px-7 py-3.5 text-sm font-semibold tracking-wide text-forest-text transition hover:bg-[#B6C7AA20];
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-4 py-2.5 text-sm text-emerald-50 backdrop-blur-md transition hover:border-white/40 hover:bg-white/10;
+  }
+}
+
+/* Scroll-reveal: elements fade and rise into view once. */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.page-enter {
+  animation: page-enter 0.5s ease both;
+}
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+.hero-enter {
+  animation: hero-enter 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes hero-enter {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(28px);
+  }
+}
+
+.pop-in {
+  animation: pop-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.9);
+  }
+}
+
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.marquee {
+  animation: marquee 45s linear infinite;
+}
+.marquee:hover {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.caret {
+  animation: caret 1s steps(1) infinite;
+}
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .page-enter,
+  .hero-enter,
+  .pop-in,
+  .float,
+  .marquee,
+  .caret {
+    animation: none;
+  }
+}

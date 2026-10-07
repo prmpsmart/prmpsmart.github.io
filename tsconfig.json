@@ -20,6 +20,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "global.d.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src", "portfolio.config.ts"]
 }
