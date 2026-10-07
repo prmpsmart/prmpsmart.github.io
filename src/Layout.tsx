@@ -5,6 +5,7 @@ import { Link } from './router';
 import { useRouter } from './router-context';
 import { NAV } from './nav';
 import { backgroundImage, photo } from './lib';
+import NetworkBackground from './components/NetworkBackground';
 
 function HeaderCta() {
   const { meetingUrl } = CONFIG.profile;
@@ -37,6 +38,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         />
         <div className="absolute inset-0 bg-forest-bg/40" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,#69847433,transparent_60%)]" />
+        <NetworkBackground />
+        <div className="absolute inset-0 bg-gradient-to-b from-forest-bg/[0.02] via-transparent to-forest-bg/[0.04]" />
       </div>
 
       {/* Desktop sidebar */}
