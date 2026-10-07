@@ -4,6 +4,10 @@ import CONFIG from '../../portfolio.config';
 import { Link } from '../router';
 import { devicon, useGitHubStats, useReveal, yearsSince } from '../lib';
 import ProjectCard from '../components/ProjectCard';
+import Magnetic from '../components/Magnetic';
+import { STOPS } from '../adventure/stops';
+import StopIcon from '../adventure/StopIcon';
+import { useSettings } from '../settings-context';
 
 function Typewriter({ words }: { words: string[] }) {
   const [i, setI] = useState(0);
@@ -73,6 +77,8 @@ export default function Home() {
   const featured = projects.filter((p) => p.featured).slice(0, 3);
   const ref = useReveal<HTMLDivElement>();
   const firstName = profile.name.split(' ')[0];
+  const { t, lang } = useSettings();
+  const es = lang === 'es';
 
   return (
     <div ref={ref} className="relative w-full max-w-full overflow-x-hidden">
@@ -102,36 +108,57 @@ export default function Home() {
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
                 </span>
                 <span className="text-sm text-forest-text">
-                  Available for opportunities
+                  {t(
+                    'Available for opportunities',
+                    'Disponible para oportunidades',
+                  )}
                 </span>
               </div>
             )}
 
             <div className="space-y-3">
-              <p className="text-lg text-forest-muted">Hi, I&apos;m</p>
+              <p className="text-lg text-forest-muted">
+                {t("Hi, I'm", 'Hola, soy')}
+              </p>
               <h1 className="font-display text-5xl font-bold leading-tight text-forest-text md:text-7xl">
                 {profile.name}
               </h1>
               <p className="text-sm uppercase tracking-[0.18em] text-forest-muted">
                 @{profile.handle}
               </p>
-              <Typewriter words={profile.roles} />
+              <Typewriter
+                key={lang}
+                words={es ? CONFIG.es.roles : profile.roles}
+              />
             </div>
 
             <p className="max-w-xl text-lg leading-relaxed text-forest-text/90">
-              Software engineer in{' '}
+              {t('Software engineer in', 'Ingeniero de software en')}{' '}
               <span className="font-semibold text-forest-warm">
                 {profile.location}
               </span>
-              . {profile.intro}
+              . {es ? CONFIG.es.intro : profile.intro}
             </p>
 
-            <div className="flex flex-wrap gap-3">
-              <Link href="/portfolio" className="btn-primary">
-                View My Work <FiArrowRight />
-              </Link>
-              <Link href="/contact" className="btn-outline">
-                Get In Touch
+            <div className="flex flex-wrap items-center gap-3">
+              <Magnetic>
+                <Link href="/portfolio" className="btn-primary">
+                  {t('View My Work', 'Ver mi trabajo')} <FiArrowRight />
+                </Link>
+              </Magnetic>
+              <Magnetic>
+                <Link href="/contact" className="btn-outline">
+                  {t('Get In Touch', 'Contáctame')}
+                </Link>
+              </Magnetic>
+              <Link
+                href="/explore"
+                className="text-sm font-semibold text-forest-warm underline-offset-4 hover:underline"
+              >
+                {t(
+                  'or take the 9-stop tour →',
+                  'o haz el recorrido de 9 paradas →',
+                )}
               </Link>
             </div>
 
@@ -170,19 +197,23 @@ export default function Home() {
           <div className="pointer-events-none relative hidden h-[420px] lg:block">
             <StatCard
               value={`${yearsSince(profile.careerStart)}+`}
-              label="Years"
+              label={t('Years', 'Años')}
               className="right-4 top-8"
               delay={300}
             />
             <StatCard
               value={`${CONFIG.projects.length}+`}
-              label="Projects"
+              label={t('Projects', 'Proyectos')}
               className="left-2 top-[42%]"
               delay={450}
             />
             <StatCard
               value={stats ? `${stats.repos}` : `${CONFIG.experiences.length}`}
-              label={stats ? 'Public repos' : 'Companies'}
+              label={
+                stats
+                  ? t('Public repos', 'Repos públicos')
+                  : t('Companies', 'Empresas')
+              }
               className="bottom-16 right-12"
               delay={600}
             />
@@ -190,7 +221,7 @@ export default function Home() {
         </div>
 
         <div className="pointer-events-none relative z-10 flex shrink-0 flex-col items-center gap-1 pb-4 pt-2 font-mono text-[10px] uppercase tracking-[0.25em] text-forest-muted">
-          <span>Scroll</span>
+          <span>{t('Scroll', 'Desliza')}</span>
           <span className="float text-base leading-none">↓</span>
         </div>
       </section>
@@ -224,16 +255,16 @@ export default function Home() {
       <section className="relative z-10 w-full max-w-full px-5 py-16 md:px-10">
         <div className="reveal mb-8 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="eyebrow">Selected work</p>
+            <p className="eyebrow">{t('Selected work', 'Trabajo destacado')}</p>
             <h2 className="mt-2 font-display text-3xl font-semibold text-forest-text">
-              Featured projects
+              {t('Featured projects', 'Proyectos destacados')}
             </h2>
           </div>
           <Link
             href="/portfolio"
             className="text-sm font-semibold text-forest-muted underline-offset-4 hover:text-forest-text hover:underline"
           >
-            See all →
+            {t('See all →', 'Ver todo →')}
           </Link>
         </div>
         <div className="grid max-w-full gap-5 md:grid-cols-3">
@@ -249,24 +280,77 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Adventure invitation */}
+      <section className="relative z-10 w-full max-w-full px-5 pb-16 md:px-10">
+        <div className="reveal mb-8 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="eyebrow">{t('The Adventure', 'La Aventura')}</p>
+            <h2 className="mt-2 font-display text-3xl font-semibold text-forest-text">
+              {t('Nine stops through my work', 'Nueve paradas por mi trabajo')}
+            </h2>
+            <p className="mt-2 max-w-xl text-forest-muted">
+              {t(
+                'Hold a phone, drag desktop windows, trace a backend, type into my shell. Pick any stop.',
+                'Sostén un teléfono, arrastra ventanas, sigue un backend, escribe en mi terminal. Elige cualquier parada.',
+              )}
+            </p>
+          </div>
+          <Magnetic>
+            <Link href="/explore" className="btn-primary">
+              {t('Start the adventure', 'Empezar la aventura')} <FiArrowRight />
+            </Link>
+          </Magnetic>
+        </div>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+          {STOPS.map((s, i) => (
+            <Link
+              key={s.id}
+              href={`/explore#${s.id}`}
+              className="reveal glass group flex items-center gap-3 rounded-2xl p-4 transition hover:bg-[var(--glass-strong)]"
+              style={{ transitionDelay: `${i * 50}ms` }}
+            >
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-forest-elevated text-forest-warm transition group-hover:scale-110">
+                <StopIcon id={s.id} />
+              </span>
+              <span className="min-w-0">
+                <span className="block font-mono text-[10px] text-forest-muted">
+                  {String(i + 1).padStart(2, '0')} · {t(s.kicker, s.kickerEs)}
+                </span>
+                <span className="block truncate font-display text-sm font-semibold text-forest-text">
+                  {t(s.title, s.titleEs)}
+                </span>
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       {/* CTA */}
       <div className="reveal relative z-10 mx-5 mb-16 overflow-hidden rounded-3xl border border-[#B6C7AA35] bg-[#B6C7AA12] px-6 py-10 backdrop-blur-sm md:mx-10 md:px-12">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-forest-deep/30 blur-3xl"
         />
-        <p className="eyebrow">Next step</p>
+        <p className="eyebrow">{t('Next step', 'Siguiente paso')}</p>
         <h2 className="mt-2 max-w-xl font-display text-3xl font-semibold text-forest-text">
-          Let&apos;s build something that works beautifully.
+          {t(
+            "Let's build something that works beautifully.",
+            'Construyamos algo que funcione de maravilla.',
+          )}
         </h2>
         <p className="mt-3 max-w-lg text-forest-muted">
-          A role, a product, or a focused build. Reach out and {firstName} will
-          get back to you.
+          {t(
+            `A role, a product, or a focused build. Reach out and ${firstName} will get back to you.`,
+            `Un puesto, un producto o un desarrollo concreto. Escribe y ${firstName} te responderá.`,
+          )}
         </p>
         <div className="mt-6">
-          <Link href="/contact" className="btn-primary">
-            Start a conversation <FiArrowRight />
-          </Link>
+          <Magnetic>
+            <Link href="/contact" className="btn-primary">
+              {t('Start a conversation', 'Iniciar una conversación')}{' '}
+              <FiArrowRight />
+            </Link>
+          </Magnetic>
         </div>
       </div>
     </div>

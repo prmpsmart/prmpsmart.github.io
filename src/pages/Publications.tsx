@@ -2,10 +2,12 @@ import { FiArrowUpRight, FiBookOpen } from 'react-icons/fi';
 import CONFIG from '../../portfolio.config';
 import { Link } from '../router';
 import { photo, useReveal } from '../lib';
+import { useSettings } from '../settings-context';
 
 export default function Publications() {
   const { profile, publications, social } = CONFIG;
   const ref = useReveal<HTMLDivElement>();
+  const { t } = useSettings();
 
   return (
     <div
@@ -25,24 +27,27 @@ export default function Publications() {
         <div className="relative grid gap-10 p-4 md:grid-cols-[1.2fr_0.8fr] md:p-6 lg:p-8">
           <div>
             <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.22em] text-emerald-200/70">
-              {profile.name} · Research · Writing
+              {profile.name} ·{' '}
+              {t('Research · Writing', 'Investigación · Escritura')}
             </p>
             <h1 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-emerald-50 md:text-5xl lg:text-6xl">
-              Publications by {profile.name}.
+              {t('Publications by', 'Publicaciones de')} {profile.name}.
             </h1>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-emerald-100/75 md:text-lg">
-              Research and writing from engineering school and beyond: applied
-              machine learning meets real-world engineering problems.
+              {t(
+                'Research and writing from engineering school and beyond: applied machine learning meets real-world engineering problems.',
+                'Investigación y escritura desde la escuela de ingeniería y más allá: aprendizaje automático aplicado a problemas reales de ingeniería.',
+              )}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/contact"
                 className="rounded-full bg-forest-text px-5 py-2.5 text-sm font-medium text-forest-bg transition hover:bg-white"
               >
-                Work with me
+                {t('Work with me', 'Trabaja conmigo')}
               </Link>
               <Link href="/portfolio" className="chip">
-                See portfolio
+                {t('See portfolio', 'Ver portafolio')}
               </Link>
             </div>
           </div>
@@ -58,15 +63,16 @@ export default function Publications() {
                   {profile.name}
                 </p>
                 <p className="text-sm text-emerald-100/65">
-                  @{profile.handle} · Software Engineer
+                  @{profile.handle} ·{' '}
+                  {t('Software Engineer', 'Ingeniero de Software')}
                 </p>
               </div>
             </div>
             <div className="mt-5 grid grid-cols-3 gap-3 border-t border-white/10 pt-4">
               {[
-                [publications.length, 'Papers'],
-                [CONFIG.projects.length, 'Projects'],
-                [CONFIG.certifications.length, 'Awards'],
+                [publications.length, t('Papers', 'Artículos')],
+                [CONFIG.projects.length, t('Projects', 'Proyectos')],
+                [CONFIG.certifications.length, t('Awards', 'Premios')],
               ].map(([n, l]) => (
                 <div key={l}>
                   <p className="font-display text-2xl text-emerald-50">{n}</p>
@@ -82,7 +88,7 @@ export default function Publications() {
               rel="noreferrer"
               className="mt-4 text-sm text-emerald-100/70 hover:text-emerald-50"
             >
-              More on GitHub →
+              {t('More on GitHub →', 'Más en GitHub →')}
             </a>
           </aside>
         </div>

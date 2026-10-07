@@ -214,13 +214,21 @@ const CONFIG = {
 
   projects: [
     {
+      title: 'Vaultify',
+      description:
+        'Smart estate management app: pay dues, generate visitor access codes, send emergency alerts, top up wallets and pay bills via Paystack, and chat with estate security.',
+      category: 'Mobile',
+      tags: ['Flutter', 'GetX', 'Socket.IO', 'Paystack'],
+      link: 'https://vaultify.africa',
+      featured: true,
+    },
+    {
       title: 'Tywn (formerly TrackWeNg)',
       description:
         'Real-time safety and location-sharing app: live location with trusted contacts, group "Cliques" chat, one-tap emergency alerts, background geolocation, and a home-screen widget.',
       category: 'Mobile',
       tags: ['Flutter', 'Socket.IO', 'Google Maps', 'FCM'],
       link: 'https://home.twynapp.org/',
-      featured: true,
     },
     {
       title: 'piXeval',
@@ -249,14 +257,6 @@ const CONFIG = {
       category: 'Mobile',
       tags: ['Flutter', 'Socket.IO', 'FCM', 'QR'],
       link: 'https://sentinelsoftware.live',
-    },
-    {
-      title: 'Vaultify',
-      description:
-        'Smart estate management app: pay dues, generate visitor access codes, send emergency alerts, top up wallets and pay bills via Paystack, and chat with estate security.',
-      category: 'Mobile',
-      tags: ['Flutter', 'GetX', 'Socket.IO', 'Paystack'],
-      link: 'https://vaultify.africa',
     },
     {
       title: 'Gamaliel Consult',
@@ -417,6 +417,244 @@ const CONFIG = {
         'Improves blast design efficiency by combining the Langefors-Kihlstrom model with artificial neural networks, accounting for rock strength and structural properties of a sedimentary limestone deposit at the Dangote Cement Ibese mine site.',
     },
   ],
+
+  /** Phone showcase on the Adventure page, in display order. */
+  mobileApps: [
+    {
+      name: 'Vaultify',
+      tagline: 'Smart estate management',
+      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/74/81/8b/74818b73-889e-7840-ead6-e26915d1c73d/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/256x256bb.jpg',
+      screenshots: [
+        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/47/4b/24/474b24ce-6662-ff7e-88bd-d5b53a7c087b/1.png/460x996bb.jpg',
+        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/4a/7b/c9/4a7bc957-cf5c-9511-cf1e-fd4ecae6f6d0/2.png/460x996bb.jpg',
+        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/58/7b/a9/587ba962-5f40-fcb3-b780-feaaf146e704/3.png/460x996bb.jpg',
+        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/d3/d9/7f/d3d97fd0-9aab-5a0f-14e9-ce3d02d12a19/6.png/460x996bb.jpg',
+      ],
+      highlights: [
+        'Wallet and bill payments (airtime, data, cable, electricity) via Paystack',
+        'QR virtual IDs and access codes verified by security at the gate',
+        'Real-time private chat between residents and estate security',
+        'Push notifications for announcements, alerts, and transactions',
+      ],
+      stack: ['Flutter', 'GetX', 'Socket.IO', 'Paystack', 'FCM'],
+      appStore:
+        'https://apps.apple.com/ng/app/vaultify-estate-app/id6751677794',
+      website: 'https://vaultify.africa',
+    },
+    {
+      name: 'Tywn',
+      tagline: 'Real-time safety & location sharing',
+      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/78/60/2e/78602e31-cc2e-6eaf-195d-e5a5a2d21a05/AppIcon-0-0-1x_U007emarketing-0-11-0-85-220.png/256x256bb.jpg',
+      screenshots: [
+        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/b3/56/b2/b356b2e9-fbd7-a0fd-ac95-99637a21dc8d/PHOTO-2025-08-28-13-43-04.jpg/460x996bb.jpg',
+        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/a2/9c/f2/a29cf20b-373a-395b-a396-cea2f8af4abf/IMG_1708.png/460x996bb.jpg',
+        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/cd/46/8d/cd468df5-d55f-cfa4-3b60-096b6ccf64bb/IMG_1712.png/460x996bb.jpg',
+        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/79/13/5d/79135d48-9c17-2e4a-2462-0da4d62c1adb/IMG_1713.png/460x996bb.jpg',
+      ],
+      highlights: [
+        'Live location sharing with trusted contacts',
+        'Group "Cliques" chat over Socket.IO',
+        'One-tap emergency alerts and a home-screen widget',
+        'Background geolocation tracking',
+      ],
+      stack: ['Flutter', 'Socket.IO', 'Google Maps', 'FCM'],
+      appStore:
+        'https://apps.apple.com/us/app/tywn-formerly-trackweng/id6741412135',
+      playStore: 'https://play.google.com/store/apps/details?id=com.wetrack.ng',
+      website: 'https://home.twynapp.org/',
+    },
+    {
+      name: 'Sentinel',
+      tagline: 'Access management for gated communities',
+      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ee/30/32/ee30323c-09cd-8024-6a39-09584bffd3e0/AppIcon-0-0-1x_U007emarketing-0-11-0-85-220.png/256x256bb.jpg',
+      screenshots: [
+        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/64/6b/28/646b28a3-d280-11a5-255b-d86e94020b0c/01__U00283_U0029.jpeg/460x996bb.jpg',
+        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/59/25/3e/59253eb3-080f-dc93-31f1-546fb182fa4b/02.jpeg/460x996bb.jpg',
+        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/97/95/78/979578cf-a6c4-7e50-c3c9-f2967ebc8706/03-8.jpeg/460x996bb.jpg',
+        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/dd/0d/ff/dd0dff45-c253-5331-e51a-d75739490680/05.jpeg/460x996bb.jpg',
+      ],
+      highlights: [
+        'Digital visitor registration and QR check-in/check-out',
+        'Sub-profiles with scoped access for dependents',
+        'Real-time announcements, broadcasts, and activity logs',
+      ],
+      stack: ['Flutter', 'Socket.IO', 'FCM', 'QR'],
+      appStore:
+        'https://apps.apple.com/us/app/sentinel-acess-management/id6758545811',
+      website: 'https://sentinelsoftware.live',
+    },
+  ],
+
+  /** Draggable windows on the Adventure page's desktop. */
+  desktopApps: [
+    {
+      name: 'piXeval',
+      caption: 'Exam correction for academic institutions · PySide6 + SwiftUI',
+      image:
+        'https://dinaten.com/wp-content/uploads/2024/09/inicioSesion01.png',
+      link: 'https://dinaten.com/pixeval-v7/',
+    },
+    {
+      name: 'AudioWave Studio',
+      caption: 'Record, compare, edit, and stream audio · NumPy + PySide6',
+      image:
+        'https://raw.githubusercontent.com/prmpsmart/audiowave/HEAD/docs/screenshots/studio-player.png',
+      link: 'https://github.com/prmpsmart/audiowave',
+    },
+    {
+      name: 'SnapGrade',
+      caption: 'Generate and grade OMR exam sheets · PySide6 + OpenCV',
+      image:
+        'https://raw.githubusercontent.com/prmpsmart/snapgrade/HEAD/docs/screenshots/grade.png',
+      link: 'https://github.com/prmpsmart/snapgrade',
+    },
+    {
+      name: 'Qt Material Widgets',
+      caption: 'Material Design components for PySide/PyQt',
+      image:
+        'https://raw.githubusercontent.com/prmpsmart/qt-material-widgets/HEAD/qt_m.gif',
+      link: 'https://github.com/prmpsmart/qt-material-widgets',
+    },
+  ],
+
+  /** Long-form write-ups on the Adventure page. Facts only; edit freely. */
+  caseStudies: [
+    {
+      title: 'Vaultify',
+      role: 'Mobile engineer · Jodna Technologies',
+      context:
+        'Residential estates juggle gate passes, dues, emergencies, and service requests across paper, calls, and group chats.',
+      challenge:
+        'Put payments, access control, emergency alerts, and resident–security communication into one reliable app.',
+      built: [
+        'Wallet top-ups and bill payments integrated with Paystack',
+        'QR virtual IDs and access codes that security verifies at the gate',
+        'Real-time private chat between residents and estate security over Socket.IO',
+        'Firebase Cloud Messaging for announcements, alerts, and transaction updates',
+        'Leading a refactor from a legacy controller structure to per-feature repositories and controllers',
+      ],
+      stack: [
+        'Flutter',
+        'GetX',
+        'Socket.IO',
+        'Paystack',
+        'FCM',
+        'Secure Storage',
+      ],
+      link: 'https://vaultify.africa',
+    },
+    {
+      title: 'piXeval',
+      role: 'Desktop software engineer · DINATEN',
+      context:
+        'Universities and academies grade large volumes of multiple-choice exams and need results, statistics, and delivery to students.',
+      challenge:
+        'Deliver fast, accurate exam correction on Windows and macOS for institutions in several languages.',
+      built: [
+        'Automated scanning and grading of up to 30 exams per minute',
+        'Bulk import from Word, Excel, and Moodle; randomized exam model generation',
+        'Email delivery of results and advanced statistical analysis',
+        'A native macOS version in SwiftUI alongside the PySide6 app',
+        'Localization into Catalan, Spanish, English, Euskera, and French',
+      ],
+      stack: ['Python', 'PySide6', 'SwiftUI', 'PyInstaller', 'Inno Setup'],
+      link: 'https://dinaten.com/pixeval-v7/',
+    },
+    {
+      title: 'Token Realty Exchange',
+      role: 'Backend engineer',
+      context:
+        'A decentralized platform that tokenizes real-estate equity so it can be traded as a commodity.',
+      challenge:
+        'Model multi-party financial approvals, compliance, and on-chain assets in a secure backend.',
+      built: [
+        'Multi-role authentication and financial approval workflows',
+        'KYC/AML verification pipelines',
+        'Asset token creation APIs integrated with smart contracts',
+        'DAO oversight logic',
+      ],
+      stack: [
+        'FastAPI',
+        'PostgreSQL',
+        'TypeScript',
+        'LoopBack',
+        'MongoDB',
+        'AWS',
+      ],
+      link: 'https://tokenrealty.exchange',
+    },
+    {
+      title: 'Price Grid',
+      role: 'Personal project',
+      context:
+        'A price-tracking backend built to demonstrate deliberate architecture rather than just working endpoints.',
+      challenge:
+        'Keep price history trustworthy, alerts decoupled, and reads fast without stale data.',
+      built: [
+        'Repository pattern isolating persistence from business logic',
+        'Append-only price records for an auditable history',
+        'Decoupled pub/sub alert pipeline',
+        'Write-through cache invalidation with Redis',
+        'Role-based access control, with unit and integration tests',
+        'Migrated mid-project from SQLAlchemy + Pydantic to SQLModel',
+      ],
+      stack: ['FastAPI', 'PostgreSQL', 'Redis', 'SQLModel', 'Pytest'],
+      link: 'https://github.com/prmpsmart/price-grid',
+    },
+  ],
+
+  /** Spanish versions of the profile text, used when a visitor switches to ES. */
+  es: {
+    roles: [
+      'Ingeniero de Software',
+      'Ingeniero Backend',
+      'Ingeniero Móvil',
+      'Ingeniero de Escritorio',
+    ],
+    intro:
+      'Diseño plataformas completas de principio a fin: APIs escalables y sistemas en tiempo real, apps móviles con Flutter y software de escritorio multiplataforma usado por escuelas, fintechs y urbanizaciones.',
+    about: [
+      'Soy Miracle Apata, conocido en internet como prmpsmart. Soy ingeniero de software y me muevo con soltura entre backend, móvil y escritorio, sin encasillarme en un solo ámbito.',
+      'Trabajo con FastAPI, Node.js y NestJS para sistemas backend, Flutter para apps móviles multiplataforma, y PySide6 y SwiftUI para experiencias de escritorio nativas. Construyo software en producción usado por instituciones educativas, plataformas fintech y comunidades residenciales.',
+      'Me importa el software que resuelve el problema real, no solo el ticket; que sigue siendo legible al crecer; que maneja los casos límite y los fallos sin dramas; y que rinde bien en cada plataforma.',
+    ],
+    focusAreas: [
+      {
+        title: 'Sistemas backend',
+        body: 'APIs escalables con autenticación, RBAC, analítica y servicios orientados a eventos, con FastAPI, Node.js y NestJS.',
+      },
+      {
+        title: 'Móvil en tiempo real',
+        body: 'Apps Flutter con ubicación en vivo, chat con Socket.IO, notificaciones push, pagos y alertas de emergencia con un toque.',
+      },
+      {
+        title: 'Software de escritorio',
+        body: 'Apps multiplataforma en PySide6 y nativas en SwiftUI, empaquetadas con PyInstaller e Inno Setup para Windows y macOS.',
+      },
+      {
+        title: 'Responsabilidad de punta a punta',
+        body: 'Del esquema de base de datos y el CI/CD a la app cliente: plataformas completas diseñadas, lanzadas y mantenidas.',
+      },
+    ],
+    whatIDo: [
+      {
+        title: 'Backend',
+        body: 'FastAPI, Django, Flask, Node.js, Express, NestJS, ASP.NET; REST, WebSockets, microservicios y sistemas multi-tenant.',
+      },
+      {
+        title: 'Móvil',
+        body: 'Flutter con GetX, Socket.IO, Google Maps, Firebase Cloud Messaging y Paystack.',
+      },
+      {
+        title: 'Escritorio',
+        body: 'Apps en PySide6 / Qt y SwiftUI, localizadas a cinco idiomas y usadas por instituciones académicas.',
+      },
+      {
+        title: 'Infraestructura',
+        body: 'Docker, GitHub Actions, AWS, Linux, Nginx y PM2, con seguridad JWT, OAuth2 y RBAC.',
+      },
+    ],
+  },
 
   seo: {
     title: 'Miracle Apata: Software Engineer',

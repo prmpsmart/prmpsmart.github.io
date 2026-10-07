@@ -156,3 +156,45 @@ body {
     animation: none;
   }
 }
+
+/* Tilt sheen: a soft highlight that follows the cursor across tilted cards. */
+.tilt {
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.tilt::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(
+    circle at var(--sheen-x, 50%) var(--sheen-y, 50%),
+    hsla(0, 0%, 100%, 0.16),
+    transparent 55%
+  );
+}
+.tilt.is-tilting::after {
+  opacity: 1;
+}
+
+.kbd {
+  @apply inline-flex min-w-[1.6rem] items-center justify-center rounded-md border border-[#B6C7AA40] bg-black/30 px-1.5 py-0.5 font-mono text-[11px] text-forest-text;
+}
+
+.dash-flow {
+  animation: dash-flow 1.2s linear infinite;
+}
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dash-flow {
+    animation: none;
+  }
+}

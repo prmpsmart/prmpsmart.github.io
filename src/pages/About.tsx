@@ -1,10 +1,16 @@
 import { FiAward, FiDownload } from 'react-icons/fi';
 import CONFIG from '../../portfolio.config';
 import { PageHeader } from '../Layout';
+import { useSettings } from '../settings-context';
 import { photo, useReveal } from '../lib';
 
 export default function About() {
-  const { profile, focusAreas, whatIDo, certifications, languages } = CONFIG;
+  const { profile, certifications, languages } = CONFIG;
+  const { t, lang } = useSettings();
+  const es = lang === 'es';
+  const about = es ? CONFIG.es.about : profile.about;
+  const focusAreas = es ? CONFIG.es.focusAreas : CONFIG.focusAreas;
+  const whatIDo = es ? CONFIG.es.whatIDo : CONFIG.whatIDo;
   const ref = useReveal<HTMLDivElement>();
 
   return (
@@ -12,14 +18,18 @@ export default function About() {
       ref={ref}
       className="max-w-full overflow-x-hidden px-5 pb-16 pt-6 md:px-10"
     >
-      <PageHeader eyebrow="About" title={profile.name}>
-        @{profile.handle} · Engineer, collaborator, shipper
+      <PageHeader eyebrow={t('About', 'Sobre mí')} title={profile.name}>
+        @{profile.handle} ·{' '}
+        {t(
+          'Engineer, collaborator, shipper',
+          'Ingeniero, colaborador, hacedor',
+        )}
       </PageHeader>
 
       <div className="grid items-start gap-8 lg:grid-cols-2">
         <div className="reveal glass rounded-2xl p-5 md:p-6">
           <div className="space-y-5">
-            {profile.about.map((p) => (
+            {about.map((p) => (
               <p
                 key={p}
                 className="text-base leading-relaxed text-forest-text/95 md:text-lg"
@@ -35,7 +45,7 @@ export default function About() {
               rel="noreferrer"
               className="btn-primary mt-6"
             >
-              <FiDownload /> Download résumé
+              <FiDownload /> {t('Download résumé', 'Descargar currículum')}
             </a>
           )}
         </div>
@@ -50,7 +60,7 @@ export default function About() {
 
       <section className="mt-16">
         <h2 className="mb-6 font-display text-2xl font-semibold text-forest-text">
-          Focus areas
+          {t('Focus areas', 'Áreas de enfoque')}
         </h2>
         <div className="grid gap-4 sm:grid-cols-2">
           {focusAreas.map((f, i) => (
@@ -73,7 +83,7 @@ export default function About() {
       <section className="mt-16 grid gap-8 lg:grid-cols-2">
         <div className="reveal glass rounded-2xl p-5 md:p-6">
           <h2 className="font-display text-2xl font-semibold text-forest-text">
-            What I do
+            {t('What I do', 'Lo que hago')}
           </h2>
           <div className="mt-4 space-y-4">
             {whatIDo.map((w) => (
@@ -91,7 +101,7 @@ export default function About() {
         </div>
         <div className="reveal glass rounded-2xl p-5 md:p-6">
           <h2 className="font-display text-2xl font-semibold text-forest-text">
-            Education & languages
+            {t('Education & languages', 'Formación e idiomas')}
           </h2>
           <div className="mt-4 space-y-4">
             {CONFIG.educations.map((e) => (
@@ -103,7 +113,7 @@ export default function About() {
                   {e.degree}
                 </h3>
                 <p className="mt-1 text-sm text-forest-muted">
-                  {e.institution} · Graduated {e.to}
+                  {e.institution} · {t('Graduated', 'Graduado en')} {e.to}
                 </p>
               </div>
             ))}
@@ -122,7 +132,10 @@ export default function About() {
       {certifications.length > 0 && (
         <section className="mt-16">
           <h2 className="mb-6 font-display text-2xl font-semibold text-forest-text">
-            Recognition & certifications
+            {t(
+              'Recognition & certifications',
+              'Reconocimientos y certificaciones',
+            )}
           </h2>
           <div className="grid gap-5 md:grid-cols-2">
             {certifications.map((c) => (

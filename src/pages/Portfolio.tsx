@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { FiGithub, FiStar } from 'react-icons/fi';
 import CONFIG, { ProjectCategory } from '../../portfolio.config';
 import { FilterChips, PageHeader } from '../Layout';
+import { useSettings } from '../settings-context';
 import ProjectCard from '../components/ProjectCard';
 import { useGitHubRepos, useReveal } from '../lib';
 
@@ -26,21 +27,28 @@ export default function Portfolio() {
     .slice(0, 9);
 
   const ref = useReveal<HTMLDivElement>();
+  const { t } = useSettings();
 
   return (
     <div
       ref={ref}
       className="max-w-full overflow-x-hidden px-5 pb-16 pt-6 md:px-10"
     >
-      <PageHeader eyebrow="Portfolio" title="Selected projects">
-        Work by {profile.name}: shipped mobile apps, production backends,
-        desktop software, and open-source builds.
+      <PageHeader
+        eyebrow={t('Portfolio', 'Portafolio')}
+        title={t('Selected projects', 'Proyectos seleccionados')}
+      >
+        {t(
+          `Work by ${profile.name}: shipped mobile apps, production backends, desktop software, and open-source builds.`,
+          `Trabajo de ${profile.name}: apps móviles lanzadas, backends en producción, software de escritorio y proyectos open source.`,
+        )}
       </PageHeader>
 
       <FilterChips<Filter>
         options={['All', ...categories]}
         value={filter}
         onChange={setFilter}
+        label={(o) => (o === 'All' ? t('All', 'Todos') : o)}
       />
 
       <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
@@ -55,9 +63,11 @@ export default function Portfolio() {
         <section className="mt-16">
           <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="eyebrow">Live from GitHub</p>
+              <p className="eyebrow">
+                {t('Live from GitHub', 'En vivo desde GitHub')}
+              </p>
               <h2 className="mt-2 font-display text-2xl font-semibold text-forest-text">
-                More repositories
+                {t('More repositories', 'Más repositorios')}
               </h2>
             </div>
             <a
@@ -66,7 +76,7 @@ export default function Portfolio() {
               rel="noreferrer"
               className="text-sm font-semibold text-forest-muted underline-offset-4 hover:text-forest-text hover:underline"
             >
-              All on GitHub →
+              {t('All on GitHub →', 'Todo en GitHub →')}
             </a>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
@@ -85,7 +95,8 @@ export default function Portfolio() {
                   </h3>
                 </div>
                 <p className="line-clamp-2 text-sm text-forest-muted">
-                  {r.description || 'No description provided.'}
+                  {r.description ||
+                    t('No description provided.', 'Sin descripción.')}
                 </p>
                 <div className="mt-auto flex items-center gap-4 pt-1 font-mono text-[11px] text-forest-muted">
                   {r.language && <span>{r.language}</span>}

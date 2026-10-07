@@ -8,6 +8,7 @@ import {
 } from 'react-icons/fi';
 import CONFIG, { SkillCategory } from '../../portfolio.config';
 import { FilterChips, PageHeader } from '../Layout';
+import { useSettings } from '../settings-context';
 import { devicon, useReveal } from '../lib';
 
 type Filter = 'All' | SkillCategory;
@@ -25,21 +26,28 @@ export default function Skills() {
   const categories = [...new Set(skills.map((s) => s.category))];
   const [filter, setFilter] = useState<Filter>('All');
   const ref = useReveal<HTMLDivElement>();
+  const { t } = useSettings();
 
   return (
     <div
       ref={ref}
       className="max-w-full overflow-x-hidden px-5 pb-16 pt-6 md:px-10"
     >
-      <PageHeader eyebrow="Skills" title="Technologies I use">
-        The stack {profile.name} ships with: languages, frameworks, data, and
-        tooling across client and product work. Filter by category.
+      <PageHeader
+        eyebrow={t('Skills', 'Habilidades')}
+        title={t('Technologies I use', 'Tecnologías que uso')}
+      >
+        {t(
+          `The stack ${profile.name} ships with: languages, frameworks, data, and tooling across client and product work. Filter by category.`,
+          `El stack con el que trabaja ${profile.name}: lenguajes, frameworks, datos y herramientas en proyectos de clientes y producto. Filtra por categoría.`,
+        )}
       </PageHeader>
 
       <FilterChips<Filter>
         options={['All', ...categories]}
         value={filter}
         onChange={setFilter}
+        label={(o) => (o === 'All' ? t('All', 'Todas') : o)}
       />
 
       <div className="space-y-10">

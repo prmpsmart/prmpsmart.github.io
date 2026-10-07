@@ -234,7 +234,7 @@ export default function NetworkBackground() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="absolute inset-0 h-full w-full"
+      className="absolute inset-0 h-full w-full opacity-40"
     />
   );
 }

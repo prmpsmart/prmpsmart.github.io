@@ -11,21 +11,48 @@ import {
 import CONFIG from '../../portfolio.config';
 import { Link } from '../router';
 import { photo } from '../lib';
+import { useSettings } from '../settings-context';
 
 const INTENTS = [
-  { title: 'Full-time role', body: 'Hiring for an engineering position' },
-  { title: 'Project / contract', body: 'Need something built or shipped' },
-  { title: 'Collaboration', body: 'Open source, research, or a partnership' },
-  { title: 'Just saying hi', body: 'Questions, feedback, or anything else' },
+  {
+    title: 'Full-time role',
+    titleEs: 'Puesto a tiempo completo',
+    body: 'Hiring for an engineering position',
+    bodyEs: 'Contratación para un puesto de ingeniería',
+  },
+  {
+    title: 'Project / contract',
+    titleEs: 'Proyecto / contrato',
+    body: 'Need something built or shipped',
+    bodyEs: 'Necesitas construir o lanzar algo',
+  },
+  {
+    title: 'Collaboration',
+    titleEs: 'Colaboración',
+    body: 'Open source, research, or a partnership',
+    bodyEs: 'Open source, investigación o una alianza',
+  },
+  {
+    title: 'Just saying hi',
+    titleEs: 'Solo saludar',
+    body: 'Questions, feedback, or anything else',
+    bodyEs: 'Preguntas, comentarios o cualquier otra cosa',
+  },
 ];
 
-const STEPS = ['Intent', 'Details', 'Message', 'Sent'];
+const STEPS = [
+  ['Intent', 'Motivo'],
+  ['Details', 'Datos'],
+  ['Message', 'Mensaje'],
+  ['Sent', 'Enviado'],
+] as const;
 
 const input =
   'w-full rounded-xl border border-[#B6C7AA40] bg-black/25 px-4 py-3 text-sm text-emerald-50 placeholder:text-emerald-100/40 outline-none transition focus:border-forest-muted';
 
 export default function Contact() {
   const { profile, social } = CONFIG;
+  const { t } = useSettings();
   const [step, setStep] = useState(0);
   const [intent, setIntent] = useState('');
   const [name, setName] = useState('');
@@ -58,14 +85,19 @@ export default function Contact() {
         <div className="relative grid gap-8 p-4 md:grid-cols-[1fr_1.15fr] md:gap-10 md:p-6 lg:p-8">
           <div className="order-2 flex flex-col justify-center md:order-1">
             <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.22em] text-emerald-200/70">
-              Contact · {profile.name}
+              {t('Contact', 'Contacto')} · {profile.name}
             </p>
             <h1 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-emerald-50 md:text-5xl">
-              Send a message. Tell me what you need.
+              {t(
+                'Send a message. Tell me what you need.',
+                'Envíame un mensaje. Cuéntame qué necesitas.',
+              )}
             </h1>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-emerald-100/75 md:text-lg">
-              Hiring, a product build, or a collaboration. Use the form and it
-              opens an email draft addressed to me, ready to send.
+              {t(
+                'Hiring, a product build, or a collaboration. Use the form and it opens an email draft addressed to me, ready to send.',
+                'Contratación, un producto o una colaboración. Usa el formulario y se abrirá un borrador de correo dirigido a mí, listo para enviar.',
+              )}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href={`mailto:${social.email}`} className="chip">
@@ -94,7 +126,7 @@ export default function Contact() {
                 href="/portfolio"
                 className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2.5 text-sm text-emerald-200/80 transition hover:text-emerald-100"
               >
-                Portfolio →
+                {t('Portfolio →', 'Portafolio →')}
               </Link>
             </div>
           </div>
@@ -102,26 +134,29 @@ export default function Contact() {
           <aside className="glass order-1 flex flex-col rounded-2xl p-5 md:order-2 md:p-6">
             <div className="mb-4">
               <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-emerald-200/60">
-                Message
+                {t('Message', 'Mensaje')}
               </p>
               <h2 className="mt-1 font-display text-xl font-semibold text-emerald-50 md:text-2xl">
-                Start here
+                {t('Start here', 'Empieza aquí')}
               </h2>
               <p className="mt-1 text-sm text-emerald-100/65">
-                Pick why you&apos;re writing, then add your details and note.
+                {t(
+                  "Pick why you're writing, then add your details and note.",
+                  'Elige el motivo, luego añade tus datos y tu nota.',
+                )}
               </p>
             </div>
 
             <div className="mb-4 flex gap-2">
               {STEPS.map((s, i) => (
-                <div key={s} className="flex flex-1 flex-col gap-1.5">
+                <div key={s[0]} className="flex flex-1 flex-col gap-1.5">
                   <div
                     className={`h-1 rounded-full transition-colors ${
                       i <= step ? 'bg-forest-muted' : 'bg-[#B6C7AA30]'
                     }`}
                   />
                   <span className="font-mono text-[9px] uppercase tracking-wider text-forest-muted/80">
-                    {s}
+                    {t(s[0], s[1])}
                   </span>
                 </div>
               ))}
@@ -131,7 +166,7 @@ export default function Contact() {
               {step === 0 && (
                 <div className="flex flex-col gap-3">
                   <p className="text-sm font-medium text-emerald-50">
-                    What is this about?
+                    {t('What is this about?', '¿De qué se trata?')}
                   </p>
                   <div className="grid gap-2 sm:grid-cols-2">
                     {INTENTS.map((it) => (
@@ -149,10 +184,10 @@ export default function Contact() {
                         }`}
                       >
                         <p className="text-sm font-semibold text-forest-text">
-                          {it.title}
+                          {t(it.title, it.titleEs)}
                         </p>
                         <p className="mt-0.5 text-[11px] text-forest-muted">
-                          {it.body}
+                          {t(it.body, it.bodyEs)}
                         </p>
                       </button>
                     ))}
@@ -169,12 +204,12 @@ export default function Contact() {
                   }}
                 >
                   <p className="text-sm font-medium text-emerald-50">
-                    Who&apos;s writing?
+                    {t("Who's writing?", '¿Quién escribe?')}
                   </p>
                   <input
                     required
                     className={input}
-                    placeholder="Your name"
+                    placeholder={t('Your name', 'Tu nombre')}
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                   />
@@ -182,13 +217,13 @@ export default function Contact() {
                     required
                     type="email"
                     className={input}
-                    placeholder="Your email"
+                    placeholder={t('Your email', 'Tu correo')}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
                   <input
                     className={input}
-                    placeholder="Company (optional)"
+                    placeholder={t('Company (optional)', 'Empresa (opcional)')}
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
                   />
@@ -198,10 +233,10 @@ export default function Contact() {
                       onClick={() => setStep(0)}
                       className="inline-flex items-center gap-2 text-sm text-forest-muted hover:text-forest-text"
                     >
-                      <FiArrowLeft /> Back
+                      <FiArrowLeft /> {t('Back', 'Atrás')}
                     </button>
                     <button type="submit" className="btn-primary !px-5 !py-2.5">
-                      Next <FiArrowRight />
+                      {t('Next', 'Siguiente')} <FiArrowRight />
                     </button>
                   </div>
                 </form>
@@ -216,14 +251,24 @@ export default function Contact() {
                   }}
                 >
                   <p className="text-sm font-medium text-emerald-50">
-                    Your note{' '}
-                    <span className="text-forest-muted">· {intent}</span>
+                    {t('Your note', 'Tu nota')}{' '}
+                    <span className="text-forest-muted">
+                      ·{' '}
+                      {t(
+                        intent,
+                        INTENTS.find((i) => i.title === intent)?.titleEs ??
+                          intent,
+                      )}
+                    </span>
                   </p>
                   <textarea
                     required
                     rows={7}
                     className={`${input} resize-none`}
-                    placeholder="What are you working on, and how can I help?"
+                    placeholder={t(
+                      'What are you working on, and how can I help?',
+                      '¿En qué estás trabajando y cómo puedo ayudarte?',
+                    )}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                   />
@@ -233,10 +278,10 @@ export default function Contact() {
                       onClick={() => setStep(1)}
                       className="inline-flex items-center gap-2 text-sm text-forest-muted hover:text-forest-text"
                     >
-                      <FiArrowLeft /> Back
+                      <FiArrowLeft /> {t('Back', 'Atrás')}
                     </button>
                     <button type="submit" className="btn-primary !px-5 !py-2.5">
-                      Open email draft <FiArrowRight />
+                      {t('Open email draft', 'Abrir borrador')} <FiArrowRight />
                     </button>
                   </div>
                 </form>
@@ -248,11 +293,13 @@ export default function Contact() {
                     <FiCheck size={26} />
                   </span>
                   <h3 className="font-display text-xl font-semibold text-emerald-50">
-                    Your draft is ready
+                    {t('Your draft is ready', 'Tu borrador está listo')}
                   </h3>
                   <p className="max-w-sm text-sm text-emerald-100/70">
-                    Your email app should have opened with the message filled
-                    in. Hit send there. If nothing opened, write to{' '}
+                    {t(
+                      'Your email app should have opened with the message filled in. Hit send there. If nothing opened, write to',
+                      'Tu app de correo debería haberse abierto con el mensaje listo. Envíalo desde ahí. Si no se abrió nada, escribe a',
+                    )}{' '}
                     <a
                       href={`mailto:${social.email}`}
                       className="text-forest-warm underline"
@@ -270,7 +317,7 @@ export default function Contact() {
                     }}
                     className="text-sm text-forest-muted underline-offset-4 hover:text-forest-text hover:underline"
                   >
-                    Write another
+                    {t('Write another', 'Escribir otro')}
                   </button>
                 </div>
               )}

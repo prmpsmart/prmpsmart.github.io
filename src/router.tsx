@@ -5,25 +5,39 @@ import { RouterContext, useRouter } from './router-context';
 // route (see the `spaRoutes` plugin in vite.config.ts), so clean URLs work.
 
 const normalize = (p: string) => (p.length > 1 ? p.replace(/\/+$/, '') : p);
+const currentHash = () => window.location.hash.slice(1);
 
 export function Router({ children }: { children: React.ReactNode }) {
   const [path, setPath] = useState(normalize(window.location.pathname));
+  const [hash, setHash] = useState(currentHash());
 
   useEffect(() => {
-    const onPop = () => setPath(normalize(window.location.pathname));
+    const onPop = () => {
+      setPath(normalize(window.location.pathname));
+      setHash(currentHash());
+    };
     window.addEventListener('popstate', onPop);
-    return () => window.removeEventListener('popstate', onPop);
+    window.addEventListener('hashchange', onPop);
+    return () => {
+      window.removeEventListener('popstate', onPop);
+      window.removeEventListener('hashchange', onPop);
+    };
   }, []);
 
   const navigate = (to: string) => {
-    if (to === path) return;
-    window.history.pushState({}, '', to);
-    setPath(normalize(to));
-    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+    const url = new URL(to, window.location.origin);
+    const nextPath = normalize(url.pathname);
+    const nextHash = url.hash.slice(1);
+    if (nextPath === path && nextHash === hash) return;
+    window.history.pushState({}, '', url.pathname + url.hash);
+    setPath(nextPath);
+    setHash(nextHash);
+    if (nextPath !== path)
+      window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
   };
 
   return (
-    <RouterContext.Provider value={{ path, navigate }}>
+    <RouterContext.Provider value={{ path, hash, navigate }}>
       {children}
     </RouterContext.Provider>
   );

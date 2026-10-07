@@ -7,6 +7,7 @@ import path from 'node:path';
 import CONFIG from './portfolio.config';
 
 const ROUTES = [
+  'explore',
   'about',
   'portfolio',
   'skills',

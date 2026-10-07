@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { FiArrowUpRight } from 'react-icons/fi';
 import type { Project } from '../../portfolio.config';
 import { projectImage } from '../lib';
+import { useTilt } from '../effects';
 
 export default function ProjectCard({
   project,
@@ -11,13 +12,15 @@ export default function ProjectCard({
   compact?: boolean;
 }) {
   const [failed, setFailed] = useState(false);
+  const tilt = useTilt<HTMLAnchorElement>(6);
 
   return (
     <a
+      ref={tilt}
       href={project.link}
       target="_blank"
       rel="noopener noreferrer"
-      className="glass group flex h-full min-w-0 flex-col overflow-hidden rounded-2xl text-left"
+      className="tilt glass group flex h-full min-w-0 flex-col overflow-hidden rounded-2xl text-left"
     >
       <div className={`relative overflow-hidden ${compact ? 'h-40' : 'h-44'}`}>
         {failed ? (

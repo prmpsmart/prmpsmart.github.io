@@ -1,29 +1,34 @@
 import { useEffect, useState } from 'react';
-import { FiGithub, FiLinkedin, FiMenu, FiX } from 'react-icons/fi';
+import { FiCommand, FiGithub, FiLinkedin, FiMenu, FiX } from 'react-icons/fi';
 import CONFIG from '../portfolio.config';
 import { Link } from './router';
 import { useRouter } from './router-context';
 import { NAV } from './nav';
 import { backgroundImage, photo } from './lib';
 import NetworkBackground from './components/NetworkBackground';
+import CursorGlow from './components/CursorGlow';
+import CommandPalette from './components/CommandPalette';
+import { useSettings } from './settings-context';
 
 function HeaderCta() {
   const { meetingUrl } = CONFIG.profile;
+  const { t } = useSettings();
   const cls =
     'rounded-full bg-forest-warm px-5 py-2 text-xs font-semibold uppercase tracking-wide text-[#45474B] transition hover:brightness-105';
   return meetingUrl ? (
     <a href={meetingUrl} target="_blank" rel="noreferrer" className={cls}>
-      Schedule a meeting
+      {t('Schedule a meeting', 'Agendar reunión')}
     </a>
   ) : (
     <Link href="/contact" className={cls}>
-      Hire me
+      {t('Hire me', 'Contrátame')}
     </Link>
   );
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { path } = useRouter();
+  const { t, lang, setLang, setPaletteOpen } = useSettings();
   const [menuOpen, setMenuOpen] = useState(false);
   useEffect(() => setMenuOpen(false), [path]);
 
@@ -69,7 +74,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                       : 'bg-transparent text-forest-text hover:bg-forest-elevated'
                   }`}
                 >
-                  {item.label}
+                  {t(item.label, item.labelEs)}
+                  {item.href === '/explore' && path !== '/explore' && (
+                    <span className="ml-2 inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-forest-warm align-middle" />
+                  )}
                 </Link>
                 <div className="h-px w-full bg-forest-elevated" />
               </div>
@@ -109,7 +117,29 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             >
               {CONFIG.profile.name}
             </Link>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <button
+                type="button"
+                onClick={() => setPaletteOpen(true)}
+                aria-label={t('Open command menu', 'Abrir menú de comandos')}
+                className="hidden items-center gap-2 rounded-full border border-white/15 px-3 py-1.5 text-xs text-forest-muted transition hover:border-white/30 hover:text-forest-text sm:inline-flex"
+              >
+                <FiCommand size={13} /> K
+              </button>
+              <button
+                type="button"
+                onClick={() => setLang(lang === 'en' ? 'es' : 'en')}
+                aria-label={t('Cambiar a español', 'Switch to English')}
+                className="rounded-full border border-white/15 px-3 py-1.5 font-mono text-xs text-forest-muted transition hover:border-white/30 hover:text-forest-text"
+              >
+                <span className={lang === 'en' ? 'text-forest-warm' : ''}>
+                  EN
+                </span>
+                <span className="mx-1 opacity-40">/</span>
+                <span className={lang === 'es' ? 'text-forest-warm' : ''}>
+                  ES
+                </span>
+              </button>
               <HeaderCta />
               <button
                 type="button"
@@ -140,7 +170,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                         : 'text-forest-text hover:bg-[#69847499]'
                     }`}
                   >
-                    {item.label}
+                    {t(item.label, item.labelEs)}
+                    {item.href === '/explore' && path !== '/explore' && (
+                      <span className="ml-2 inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-forest-warm align-middle" />
+                    )}
                   </Link>
                 </li>
               ))}
@@ -148,6 +181,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </nav>
       </header>
+
+      <CursorGlow />
+      <CommandPalette />
 
       <div className="relative z-10 flex min-h-screen w-full flex-col pt-16 md:pl-[14rem]">
         <main
@@ -159,6 +195,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <footer className="relative z-10 border-t border-[#B6C7AA30] px-5 py-6 text-center font-mono text-[11px] uppercase tracking-[0.2em] text-forest-muted/80 md:px-10">
           © {new Date().getFullYear()} {CONFIG.profile.name} · @
           {CONFIG.profile.handle}
+          <span className="hidden sm:inline">
+            {' '}
+            · {t('Press', 'Pulsa')} <span className="kbd">⌘K</span>{' '}
+            {t('to go anywhere', 'para ir a cualquier parte')}
+          </span>
         </footer>
       </div>
     </section>
@@ -193,10 +234,12 @@ export function FilterChips<T extends string>({
   options,
   value,
   onChange,
+  label = (o) => o,
 }: {
   options: T[];
   value: T;
   onChange: (v: T) => void;
+  label?: (o: T) => string;
 }) {
   return (
     <div className="mb-10 flex flex-wrap gap-2">
@@ -211,7 +254,7 @@ export function FilterChips<T extends string>({
               : 'glass text-forest-text hover:bg-[var(--glass-strong)]'
           }`}
         >
-          {o}
+          {label(o)}
         </button>
       ))}
     </div>

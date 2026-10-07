@@ -1,20 +1,26 @@
 import CONFIG from '../../portfolio.config';
 import { PageHeader } from '../Layout';
+import { useSettings } from '../settings-context';
 import { useReveal } from '../lib';
 
 export default function Experience() {
   const { experiences, profile } = CONFIG;
   const ref = useReveal<HTMLDivElement>();
+  const { t } = useSettings();
 
   return (
     <div
       ref={ref}
       className="max-w-full overflow-x-hidden px-5 pb-16 pt-6 md:px-10"
     >
-      <PageHeader eyebrow="Experience" title="Work timeline">
-        {profile.name} (@{profile.handle}): roles across product teams in
-        Nigeria, the USA, and Spain, spanning backend leadership, contract
-        delivery, and desktop software.
+      <PageHeader
+        eyebrow={t('Experience', 'Experiencia')}
+        title={t('Work timeline', 'Trayectoria')}
+      >
+        {t(
+          `${profile.name} (@${profile.handle}): roles across product teams in Nigeria, the USA, and Spain, spanning backend leadership, contract delivery, and desktop software.`,
+          `${profile.name} (@${profile.handle}): puestos en equipos de producto en Nigeria, EE. UU. y España, desde liderazgo backend hasta contratos y software de escritorio.`,
+        )}
       </PageHeader>
 
       <div className="relative mx-auto max-w-5xl">
@@ -65,7 +71,7 @@ export default function Experience() {
                             {r.title}
                           </span>
                           <span className="font-mono text-xs uppercase text-forest-muted">
-                            {r.from} to {r.to}
+                            {r.from} {t('to', 'a')} {r.to}
                           </span>
                         </div>
                       ))}
