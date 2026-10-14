@@ -230,9 +230,13 @@ export default function Home() {
       <div className="reveal relative z-10 w-full max-w-full overflow-hidden border-y border-[#B6C7AA30] bg-forest-bg/45 py-4 backdrop-blur-[2px]">
         <div className="marquee flex w-max items-center gap-6 whitespace-nowrap">
           {[...skills, ...skills].map((s, i) => (
-            <div
+            <a
               key={i}
-              className="glass flex shrink-0 items-center gap-3 rounded-full px-5 py-2.5"
+              href={s.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              tabIndex={i >= skills.length ? -1 : undefined}
+              className="glass flex shrink-0 items-center gap-3 rounded-full px-5 py-2.5 transition hover:bg-[var(--glass-strong)] hover:text-forest-warm"
               aria-hidden={i >= skills.length}
             >
               {s.icon && (
@@ -246,7 +250,7 @@ export default function Home() {
               <span className="text-sm font-medium text-forest-text">
                 {s.name}
               </span>
-            </div>
+            </a>
           ))}
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {
+  FiArrowUpRight,
   FiCode,
   FiDatabase,
   FiServer,
@@ -65,16 +66,25 @@ export default function Skills() {
                 {skills
                   .filter((s) => s.category === c)
                   .map((s) => (
-                    <div
+                    <a
                       key={s.name}
-                      className="reveal glass flex flex-col items-center gap-3 rounded-xl p-4"
+                      href={s.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={t(`Visit ${s.name}`, `Visitar ${s.name}`)}
+                      className="reveal glass group relative flex flex-col items-center gap-3 rounded-xl p-4 transition hover:-translate-y-1 hover:border-forest-warm/40 hover:bg-[var(--glass-strong)]"
                     >
+                      <FiArrowUpRight
+                        aria-hidden="true"
+                        className="absolute right-2 top-2 text-forest-warm opacity-0 transition group-hover:opacity-100"
+                        size={14}
+                      />
                       {s.icon ? (
                         <img
                           src={devicon(s.icon)}
                           alt=""
                           loading="lazy"
-                          className="h-12 w-12 object-contain"
+                          className="h-12 w-12 object-contain transition duration-300 group-hover:scale-110"
                         />
                       ) : (
                         <span className="flex h-12 w-12 items-center justify-center font-display text-xl text-forest-muted">
@@ -84,7 +94,7 @@ export default function Skills() {
                       <span className="text-center text-xs font-semibold text-forest-text">
                         {s.name}
                       </span>
-                    </div>
+                    </a>
                   ))}
               </div>
             </section>

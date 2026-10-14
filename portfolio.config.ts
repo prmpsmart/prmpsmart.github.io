@@ -13,6 +13,8 @@ export interface Skill {
   category: SkillCategory;
   /** Devicon slug, e.g. 'python/python-original'. See https://devicon.dev */
   icon?: string;
+  /** Official website; the skill tile links here. */
+  url?: string;
 }
 
 export type ProjectCategory =
@@ -124,89 +126,183 @@ const CONFIG = {
   ],
 
   skills: [
-    { name: 'Python', category: 'Languages', icon: 'python/python-original' },
+    {
+      name: 'Python',
+      url: 'https://www.python.org',
+      category: 'Languages',
+      icon: 'python/python-original',
+    },
     {
       name: 'TypeScript',
+      url: 'https://www.typescriptlang.org',
       category: 'Languages',
       icon: 'typescript/typescript-original',
     },
     {
       name: 'JavaScript',
+      url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
       category: 'Languages',
       icon: 'javascript/javascript-original',
     },
-    { name: 'Dart', category: 'Languages', icon: 'dart/dart-original' },
-    { name: 'Swift', category: 'Languages', icon: 'swift/swift-original' },
-    { name: 'C#', category: 'Languages', icon: 'csharp/csharp-original' },
-    { name: 'FastAPI', category: 'Backend', icon: 'fastapi/fastapi-original' },
-    { name: 'Django', category: 'Backend', icon: 'django/django-plain' },
-    { name: 'Flask', category: 'Backend', icon: 'flask/flask-original' },
-    { name: 'Node.js', category: 'Backend', icon: 'nodejs/nodejs-original' },
-    { name: 'Express', category: 'Backend', icon: 'express/express-original' },
-    { name: 'NestJS', category: 'Backend', icon: 'nestjs/nestjs-original' },
+    {
+      name: 'Dart',
+      url: 'https://dart.dev',
+      category: 'Languages',
+      icon: 'dart/dart-original',
+    },
+    {
+      name: 'Swift',
+      url: 'https://www.swift.org',
+      category: 'Languages',
+      icon: 'swift/swift-original',
+    },
+    {
+      name: 'C#',
+      url: 'https://learn.microsoft.com/en-us/dotnet/csharp/',
+      category: 'Languages',
+      icon: 'csharp/csharp-original',
+    },
+    {
+      name: 'FastAPI',
+      url: 'https://fastapi.tiangolo.com',
+      category: 'Backend',
+      icon: 'fastapi/fastapi-original',
+    },
+    {
+      name: 'Django',
+      url: 'https://www.djangoproject.com',
+      category: 'Backend',
+      icon: 'django/django-plain',
+    },
+    {
+      name: 'Flask',
+      url: 'https://flask.palletsprojects.com',
+      category: 'Backend',
+      icon: 'flask/flask-original',
+    },
+    {
+      name: 'Node.js',
+      url: 'https://nodejs.org',
+      category: 'Backend',
+      icon: 'nodejs/nodejs-original',
+    },
+    {
+      name: 'Express',
+      url: 'https://expressjs.com',
+      category: 'Backend',
+      icon: 'express/express-original',
+    },
+    {
+      name: 'NestJS',
+      url: 'https://nestjs.com',
+      category: 'Backend',
+      icon: 'nestjs/nestjs-original',
+    },
     {
       name: 'ASP.NET',
+      url: 'https://dotnet.microsoft.com/en-us/apps/aspnet',
       category: 'Backend',
       icon: 'dotnetcore/dotnetcore-original',
     },
     {
       name: 'Socket.IO',
+      url: 'https://socket.io',
       category: 'Backend',
       icon: 'socketio/socketio-original',
     },
     {
       name: 'Flutter',
+      url: 'https://flutter.dev',
       category: 'Mobile & Desktop',
       icon: 'flutter/flutter-original',
     },
     {
       name: 'PySide6 / Qt',
+      url: 'https://doc.qt.io/qtforpython-6/',
       category: 'Mobile & Desktop',
       icon: 'qt/qt-original',
     },
     {
       name: 'SwiftUI',
+      url: 'https://developer.apple.com/xcode/swiftui/',
       category: 'Mobile & Desktop',
       icon: 'swift/swift-original',
     },
     {
       name: 'Firebase',
+      url: 'https://firebase.google.com',
       category: 'Mobile & Desktop',
       icon: 'firebase/firebase-original',
     },
     {
       name: 'PostgreSQL',
+      url: 'https://www.postgresql.org',
       category: 'Data',
       icon: 'postgresql/postgresql-original',
     },
-    { name: 'MongoDB', category: 'Data', icon: 'mongodb/mongodb-original' },
-    { name: 'MySQL', category: 'Data', icon: 'mysql/mysql-original' },
-    { name: 'Redis', category: 'Data', icon: 'redis/redis-original' },
+    {
+      name: 'MongoDB',
+      url: 'https://www.mongodb.com',
+      category: 'Data',
+      icon: 'mongodb/mongodb-original',
+    },
+    {
+      name: 'MySQL',
+      url: 'https://www.mysql.com',
+      category: 'Data',
+      icon: 'mysql/mysql-original',
+    },
+    {
+      name: 'Redis',
+      url: 'https://redis.io',
+      category: 'Data',
+      icon: 'redis/redis-original',
+    },
     {
       name: 'Docker',
+      url: 'https://www.docker.com',
       category: 'DevOps & Tools',
       icon: 'docker/docker-original',
     },
     {
       name: 'GitHub Actions',
+      url: 'https://github.com/features/actions',
       category: 'DevOps & Tools',
       icon: 'githubactions/githubactions-original',
     },
     {
       name: 'AWS',
+      url: 'https://aws.amazon.com',
       category: 'DevOps & Tools',
       icon: 'amazonwebservices/amazonwebservices-plain-wordmark',
     },
-    { name: 'Linux', category: 'DevOps & Tools', icon: 'linux/linux-original' },
-    { name: 'Nginx', category: 'DevOps & Tools', icon: 'nginx/nginx-original' },
+    {
+      name: 'Linux',
+      url: 'https://www.kernel.org',
+      category: 'DevOps & Tools',
+      icon: 'linux/linux-original',
+    },
+    {
+      name: 'Nginx',
+      url: 'https://nginx.org',
+      category: 'DevOps & Tools',
+      icon: 'nginx/nginx-original',
+    },
     {
       name: 'Pytest',
+      url: 'https://docs.pytest.org',
       category: 'DevOps & Tools',
       icon: 'pytest/pytest-original',
     },
-    { name: 'Jest', category: 'DevOps & Tools', icon: 'jest/jest-plain' },
+    {
+      name: 'Jest',
+      url: 'https://jestjs.io',
+      category: 'DevOps & Tools',
+      icon: 'jest/jest-plain',
+    },
     {
       name: 'Postman',
+      url: 'https://www.postman.com',
       category: 'DevOps & Tools',
       icon: 'postman/postman-original',
     },
