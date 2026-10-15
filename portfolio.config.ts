@@ -371,20 +371,14 @@ const CONFIG = {
       link: 'https://pdf-webpage-ashy.vercel.app',
     },
     {
-      title: 'Price Grid',
-      description:
-        'FastAPI + PostgreSQL + Redis backend: repository pattern, decoupled pub/sub alert pipeline, write-through cache invalidation, append-only price records, and RBAC. Unit and integration tested.',
-      category: 'Open source',
-      tags: ['FastAPI', 'PostgreSQL', 'Redis', 'SQLModel'],
-      link: 'https://github.com/prmpsmart/price-grid',
-    },
-    {
       title: 'SnapGrade',
       description:
         'Desktop app for generating, scanning, and grading multiple-choice exam sheets via OMR, with Excel roster import and results export. PySide6 + OpenCV with a token-based theming system.',
       category: 'Open source',
       tags: ['PySide6', 'OpenCV', 'openpyxl'],
       link: 'https://github.com/prmpsmart/snapgrade',
+      image:
+        'https://raw.githubusercontent.com/prmpsmart/snapgrade/HEAD/docs/screenshots/generate-preview.png',
     },
     {
       title: 'AudioWave',
@@ -393,6 +387,16 @@ const CONFIG = {
       category: 'Open source',
       tags: ['Python', 'NumPy', 'PySide6'],
       link: 'https://github.com/prmpsmart/audiowave',
+      image:
+        'https://raw.githubusercontent.com/prmpsmart/audiowave/HEAD/docs/screenshots/studio-player.png',
+    },
+    {
+      title: 'Price Grid',
+      description:
+        'FastAPI + PostgreSQL + Redis backend: repository pattern, decoupled pub/sub alert pipeline, write-through cache invalidation, append-only price records, and RBAC. Unit and integration tested.',
+      category: 'Open source',
+      tags: ['FastAPI', 'PostgreSQL', 'Redis', 'SQLModel'],
+      link: 'https://github.com/prmpsmart/price-grid',
     },
     {
       title: 'Flutter Video Call',
