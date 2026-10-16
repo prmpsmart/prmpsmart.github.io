@@ -354,14 +354,14 @@ const CONFIG = {
       tags: ['Flutter', 'Socket.IO', 'FCM', 'QR'],
       link: 'https://sentinelsoftware.live',
     },
-    {
-      title: 'Gamaliel Consult',
-      description:
-        'REST APIs for a mentorship and advisory platform: appointment scheduling, mentor matching, and role-based access control.',
-      category: 'Backend',
-      tags: ['Node.js', 'Express', 'MongoDB', 'TypeScript'],
-      link: 'https://www.gamalielconsult.com',
-    },
+    // {
+    //   title: 'Gamaliel Consult',
+    //   description:
+    //     'REST APIs for a mentorship and advisory platform: appointment scheduling, mentor matching, and role-based access control.',
+    //   category: 'Backend',
+    //   tags: ['Node.js', 'Express', 'MongoDB', 'TypeScript'],
+    //   link: 'https://www.gamalielconsult.com',
+    // },
     {
       title: 'PDF Webpage',
       description:
@@ -388,7 +388,7 @@ const CONFIG = {
       tags: ['Python', 'NumPy', 'PySide6'],
       link: 'https://github.com/prmpsmart/audiowave',
       image:
-        'https://raw.githubusercontent.com/prmpsmart/audiowave/HEAD/docs/screenshots/studio-player.png',
+        'https://raw.githubusercontent.com/prmpsmart/audiowave/main/docs/media/audiowave-tour.gif',
     },
     {
       title: 'Price Grid',
@@ -598,7 +598,7 @@ const CONFIG = {
       name: 'AudioWave Studio',
       caption: 'Record, compare, edit, and stream audio · NumPy + PySide6',
       image:
-        'https://raw.githubusercontent.com/prmpsmart/audiowave/HEAD/docs/screenshots/studio-player.png',
+        'https://raw.githubusercontent.com/prmpsmart/audiowave/main/docs/media/audiowave-tour.gif',
       link: 'https://github.com/prmpsmart/audiowave',
     },
     {
