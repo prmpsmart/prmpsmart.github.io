@@ -18,8 +18,8 @@ export default function Experience() {
         title={t('Work timeline', 'Trayectoria')}
       >
         {t(
-          `${profile.name} (@${profile.handle}): roles across product teams in Nigeria, the USA, and Spain, spanning backend leadership, contract delivery, and desktop software.`,
-          `${profile.name} (@${profile.handle}): puestos en equipos de producto en Nigeria, EE. UU. y España, desde liderazgo backend hasta contratos y software de escritorio.`,
+          `${profile.name} (@${profile.handle}): roles across product teams in Nigeria, Canada, the USA, and Spain, spanning backend leadership, contract delivery, and desktop software.`,
+          `${profile.name} (@${profile.handle}): puestos en equipos de producto en Nigeria, Canadá, EE. UU. y España, desde liderazgo backend hasta contratos y software de escritorio.`,
         )}
       </PageHeader>
 
