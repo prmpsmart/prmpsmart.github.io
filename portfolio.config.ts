@@ -397,7 +397,7 @@ const CONFIG = {
     // {
     //   title: 'Jorly API',
     //   description:
-    //     'FastAPI backend for the Jorly travel platform: search and pricing through the Wakanow affiliate API, Paystack and Flutterwave payments, group travel, JWT auth, Celery jobs and Redis-backed search sessions.',
+    //     'FastAPI backend for the Jorly travel platform: flight, hotel and car search and booking through Sabre, Paystack and Flutterwave payments, group travel, JWT auth, Celery jobs and Redis-backed search sessions.',
     //   category: 'Backend',
     //   tags: ['FastAPI', 'PostgreSQL', 'Redis', 'Celery'],
     //   link: 'https://dev.flyjorly.com',
@@ -478,14 +478,14 @@ const CONFIG = {
     {
       company: 'Jorly',
       companyLink: 'https://dev.flyjorly.com',
-      location: 'Remote',
+      location: 'Canada (Remote)',
       roles: [
         { title: 'Mobile Engineer (Contract)', from: 'May 2026', to: 'Present' },
         { title: 'Backend Engineer (Contract)', from: 'May 2026', to: 'Present' },
       ],
       highlights: [
-        'Building the Jorly travel-booking platform (flights, hotels, car rentals): a Flutter app and a FastAPI backend, currently in development.',
-        'Backend: provider search and pricing, Paystack and Flutterwave payments, group travel, JWT auth, and Celery background jobs on PostgreSQL and Redis.',
+        'Building the Jorly travel-booking platform (flights, hotels, car rentals): a Flutter app and a FastAPI backend, currently in development. Focused on the Nigerian market, with domestic and international flights all routed through Sabre.',
+        'Backend: Sabre-backed search and booking behind swappable provider adapters, Paystack and Flutterwave payments, group travel, JWT auth, and Celery background jobs on PostgreSQL and Redis.',
         'Mobile: Cubit state management, typed Either-based repositories, FCM push, and Google and Apple sign-in.',
       ],
     },
