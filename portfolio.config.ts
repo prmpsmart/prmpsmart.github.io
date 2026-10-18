@@ -54,8 +54,8 @@ const CONFIG = {
     githubUsername: 'prmpsmart',
     location: 'Akure, Nigeria (remote)',
     availableForWork: true,
-    /** First month of professional work, used for the "years" stat. */
-    careerStart: '2023-08',
+    /** Start of freelance work, used for the "years" stat. */
+    careerStart: '2020-01',
     /** Rotating lines typed out under the name on the home page. */
     roles: [
       'Software Engineer',
