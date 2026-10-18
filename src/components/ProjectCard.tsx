@@ -38,6 +38,11 @@ export default function ProjectCard({
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-forest-bg/70 to-transparent opacity-80" />
+        {project.status && (
+          <span className="absolute left-3 top-3 rounded-full bg-forest-bg/80 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-forest-warm">
+            {project.status}
+          </span>
+        )}
         <FiArrowUpRight
           className="absolute right-3 top-3 text-forest-warm opacity-0 transition group-hover:opacity-100"
           size={20}

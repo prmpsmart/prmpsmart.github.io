@@ -29,6 +29,8 @@ export interface Project {
   /** Optional preview image. GitHub repos get their social card automatically; live sites get a screenshot. */
   image?: string;
   featured?: boolean;
+  /** Shown as a badge on the card, e.g. for work that is not yet released. */
+  status?: string;
 }
 
 export interface Experience {
@@ -383,6 +385,26 @@ const CONFIG = {
       featured: true,
     },
     {
+      title: 'Jorly Mobile',
+      description:
+        'Flutter app for a travel booking platform: flights, hotels and car rentals in one account, with Paystack and Flutterwave checkout, push notifications, and Google and Apple sign-in. Cubit state management, typed Either-based repositories.',
+      category: 'Mobile',
+      tags: ['Flutter', 'Cubit', 'Firebase', 'Paystack'],
+      link: 'https://dev.flyjorly.com',
+      image: '/apps/jorly-1.jpg',
+      status: 'In development',
+    },
+    {
+      title: 'Jorly API',
+      description:
+        'FastAPI backend for the Jorly travel platform: search and pricing through the Wakanow affiliate API, Paystack and Flutterwave payments, group travel, JWT auth, Celery jobs and Redis-backed search sessions.',
+      category: 'Backend',
+      tags: ['FastAPI', 'PostgreSQL', 'Redis', 'Celery'],
+      link: 'https://dev.flyjorly.com',
+      image: '/apps/jorly-1.jpg',
+      status: 'In development',
+    },
+    {
       title: 'OxyTrack',
       description:
         'Oxygen cylinder inventory and facility management app for HealthPort Africa: full cylinder lifecycle tracking, QR and NFC identification, role-based facility modules, and audit workflows.',
@@ -453,6 +475,20 @@ const CONFIG = {
   ] as Project[],
 
   experiences: [
+    {
+      company: 'Jorly',
+      companyLink: 'https://dev.flyjorly.com',
+      location: 'Remote',
+      roles: [
+        { title: 'Mobile Engineer (Contract)', from: 'May 2026', to: 'Present' },
+        { title: 'Backend Engineer (Contract)', from: 'May 2026', to: 'Present' },
+      ],
+      highlights: [
+        'Building the Jorly travel-booking platform (flights, hotels, car rentals): a Flutter app and a FastAPI backend, currently in development.',
+        'Backend: provider search and pricing, Paystack and Flutterwave payments, group travel, JWT auth, and Celery background jobs on PostgreSQL and Redis.',
+        'Mobile: Cubit state management, typed Either-based repositories, FCM push, and Google and Apple sign-in.',
+      ],
+    },
     {
       company: 'Jodna Technologies',
       companyLink: 'https://jodnatechnologies.com',
