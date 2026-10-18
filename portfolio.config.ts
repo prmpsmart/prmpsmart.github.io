@@ -17,12 +17,7 @@ export interface Skill {
   url?: string;
 }
 
-export type ProjectCategory =
-  | 'Mobile'
-  | 'Backend'
-  | 'Desktop'
-  | 'Web3'
-  | 'Open source';
+export type ProjectCategory = 'Mobile' | 'Backend' | 'Desktop' | 'Open source';
 
 export interface Project {
   title: string;
@@ -44,6 +39,9 @@ export interface Experience {
   highlights: string[];
 }
 
+/** Résumés live in this repo; the site links to them instead of hosting copies. */
+const RESUME_REPO = 'https://github.com/prmpsmart/miracle-apata-resumes';
+
 const CONFIG = {
   base: '/',
   siteUrl: 'https://prmpsmart.github.io',
@@ -52,7 +50,7 @@ const CONFIG = {
     name: 'Miracle Apata',
     handle: 'prmpsmart',
     githubUsername: 'prmpsmart',
-    location: 'Akure, Nigeria',
+    location: 'Akure, Nigeria (remote)',
     availableForWork: true,
     /** First month of professional work, used for the "years" stat. */
     careerStart: '2023-08',
@@ -67,7 +65,7 @@ const CONFIG = {
       'I design full platforms end to end: scalable APIs and real-time systems, Flutter mobile apps, and cross-platform desktop software used by schools, fintechs, and estates.',
     /** Shown on the About page. One string per paragraph. */
     about: [
-      "I'm Miracle Apata, known online as prmpsmart. I'm a software engineer who moves fluidly across backend, mobile, and desktop development rather than staying boxed into one lane.",
+      "I'm Miracle Apata, known online as prmpsmart. I'm a software engineer who moves fluidly across backend, mobile, and desktop development rather than staying boxed into one lane. I started programming with Python, teaching myself after a CSC 201 course in 2018/2019. At Jodna Technologies, a young software company founded by a friend, I joined early, started out owning the backend, and now also lead mobile (mostly Flutter) across client projects.",
       'My work spans FastAPI, Node.js, and NestJS for backend systems, Flutter for cross-platform mobile apps, and PySide6 and SwiftUI for native desktop experiences. I build production software used by educational institutions, fintech platforms, and estate communities.',
       'I care about software that solves the real problem, not just the ticket; stays readable as it grows; handles edge cases and failure without drama; and performs well on every platform it targets.',
     ],
@@ -77,8 +75,24 @@ const CONFIG = {
     backgroundImage: '',
     /** e.g. a Calendly link. Leave empty to show "Hire me" pointing to the contact page. */
     meetingUrl: '',
-    resumeUrl: '/resume.pdf',
+    resumeUrl: `${RESUME_REPO}/raw/main/pdfs/Miracle-Apata-Software-Engineer.pdf`,
   },
+
+  /** Role-specific résumés (PDF + Markdown) in the résumé repo. */
+  resumes: [
+    { role: 'Software Engineer', file: 'software-engineer' },
+    { role: 'Mobile Engineer', file: 'mobile-engineer' },
+    { role: 'Backend Engineer', file: 'backend-engineer' },
+    { role: 'Python Engineer', file: 'python-engineer' },
+    { role: 'Desktop Engineer', file: 'desktop-engineer' },
+  ].map((r) => ({
+    role: r.role,
+    pdf: `${RESUME_REPO}/raw/main/pdfs/Miracle-Apata-${r.file
+      .split('-')
+      .map((w) => w[0].toUpperCase() + w.slice(1))
+      .join('-')}.pdf`,
+    markdown: `${RESUME_REPO}/blob/main/resumes/${r.file}.md`,
+  })),
 
   social: {
     email: 'prmpsmart@gmail.com',
@@ -113,7 +127,7 @@ const CONFIG = {
     },
     {
       title: 'Mobile',
-      body: 'Flutter with GetX, Socket.IO, Google Maps, Firebase Cloud Messaging, and Paystack.',
+      body: 'Flutter (primary) with GetX, Socket.IO, Google Maps, Firebase Cloud Messaging, and Paystack, plus Kotlin, Swift, and React Native.',
     },
     {
       title: 'Desktop',
@@ -161,6 +175,30 @@ const CONFIG = {
       url: 'https://learn.microsoft.com/en-us/dotnet/csharp/',
       category: 'Languages',
       icon: 'csharp/csharp-original',
+    },
+    {
+      name: 'Kotlin',
+      url: 'https://kotlinlang.org',
+      category: 'Languages',
+      icon: 'kotlin/kotlin-original',
+    },
+    {
+      name: 'C',
+      url: 'https://en.cppreference.com/w/c',
+      category: 'Languages',
+      icon: 'c/c-original',
+    },
+    {
+      name: 'C++',
+      url: 'https://isocpp.org',
+      category: 'Languages',
+      icon: 'cplusplus/cplusplus-original',
+    },
+    {
+      name: 'OCaml',
+      url: 'https://ocaml.org',
+      category: 'Languages',
+      icon: 'ocaml/ocaml-original',
     },
     {
       name: 'FastAPI',
@@ -215,6 +253,12 @@ const CONFIG = {
       url: 'https://flutter.dev',
       category: 'Mobile & Desktop',
       icon: 'flutter/flutter-original',
+    },
+    {
+      name: 'React Native',
+      url: 'https://reactnative.dev',
+      category: 'Mobile & Desktop',
+      icon: 'react/react-original',
     },
     {
       name: 'PySide6 / Qt',
@@ -325,26 +369,26 @@ const CONFIG = {
       category: 'Mobile',
       tags: ['Flutter', 'Socket.IO', 'Google Maps', 'FCM'],
       link: 'https://home.twynapp.org/',
+      featured: true,
     },
     {
       title: 'piXeval',
       description:
-        'Desktop exam-correction suite used by academic institutions: automated scanning and grading up to 30 exams per minute, Word/Excel/Moodle import, and statistics. Localized into five languages, with a native macOS build.',
+        'Desktop exam-correction suite used by academic institutions: automated scanning and grading up to 30 exams per minute, Word/Excel/Moodle import, and statistics. Localized into five languages, with a native macOS build. Click through the interactive web preview of the redesigned interface.',
       category: 'Desktop',
       tags: ['PySide6', 'SwiftUI', 'PyInstaller', 'Inno Setup'],
-      link: 'https://dinaten.com/pixeval-v7/',
+      link: 'https://prmpsmart.github.io/pixeval_web/',
       image:
-        'https://dinaten.com/wp-content/uploads/2024/09/inicioSesion01.png',
+        'https://raw.githubusercontent.com/prmpsmart/pixeval_web/HEAD/docs/screenshots/home.jpg',
       featured: true,
     },
     {
-      title: 'Token Realty Exchange',
+      title: 'OxyTrack',
       description:
-        'Backend for a decentralized platform that tokenizes real-estate equity: multi-role auth, financial approval workflows, KYC/AML pipelines, token creation APIs, and DAO oversight logic.',
-      category: 'Web3',
-      tags: ['FastAPI', 'PostgreSQL', 'LoopBack', 'MongoDB', 'AWS'],
-      link: 'https://tokenrealty.exchange',
-      featured: true,
+        'Oxygen cylinder inventory and facility management app for HealthPort Africa: full cylinder lifecycle tracking, QR and NFC identification, role-based facility modules, and audit workflows.',
+      category: 'Mobile',
+      tags: ['Flutter', 'BLoC', 'NFC', 'QR'],
+      link: 'https://healthportafrica.com',
     },
     {
       title: 'Sentinel',
@@ -354,14 +398,6 @@ const CONFIG = {
       tags: ['Flutter', 'Socket.IO', 'FCM', 'QR'],
       link: 'https://sentinelsoftware.live',
     },
-    // {
-    //   title: 'Gamaliel Consult',
-    //   description:
-    //     'REST APIs for a mentorship and advisory platform: appointment scheduling, mentor matching, and role-based access control.',
-    //   category: 'Backend',
-    //   tags: ['Node.js', 'Express', 'MongoDB', 'TypeScript'],
-    //   link: 'https://www.gamalielconsult.com',
-    // },
     {
       title: 'PDF Webpage',
       description:
@@ -420,9 +456,14 @@ const CONFIG = {
     {
       company: 'Jodna Technologies',
       companyLink: 'https://jodnatechnologies.com',
-      location: 'Port Harcourt, Nigeria',
-      roles: [{ title: 'Software Engineer', from: 'Dec 2024', to: 'Present' }],
+      location: 'Port Harcourt, Nigeria (Remote)',
+      roles: [
+        { title: 'Senior Mobile Engineer', from: 'Dec 2024', to: 'Present' },
+        { title: 'Backend Engineer', from: 'Dec 2024', to: 'Present' },
+      ],
       highlights: [
+        'Joined as an early member of a young software company delivering client projects: started by owning all backend work, then took on mobile alongside it.',
+        'Led mobile development of three production Flutter apps: Vaultify, Sentinel, and Tywn.',
         'Led backend architecture for mobile and web platforms using FastAPI and Node.js.',
         'Designed scalable APIs for authentication, role-based access control, and analytics.',
         'Implemented real-time notifications, push messaging, and event-driven services.',
@@ -430,48 +471,58 @@ const CONFIG = {
       ],
     },
     {
-      company: 'ScanifyDev',
-      companyLink: 'https://scanifydev.com',
-      location: 'New Jersey, USA',
+      company: 'Zent Technologies Limited',
+      companyLink: 'https://joinzent.com',
+      location: 'Lagos, Nigeria (Remote)',
       roles: [
         {
-          title: 'Backend Engineer (Contract)',
-          from: 'Sep 2024',
-          to: 'Dec 2024',
+          title: 'Mobile Engineer (Contract)',
+          from: 'Mar 2025',
+          to: 'Jul 2025',
         },
       ],
       highlights: [
-        'Built FastAPI and Express APIs for blockchain-integrated financial approvals and smart deals.',
-        'Designed database schemas and automated CI/CD pipelines.',
+        'Developed and maintained the Zent mobile app in Flutter for Android and iOS.',
+        'Integrated backend services for real-time order tracking, inventory management, and payment workflows.',
       ],
     },
     {
       company: 'Sofgo',
       companyLink: 'https://sofgo.io',
-      location: 'Ondo, Nigeria',
+      location: 'Ondo, Nigeria (Remote)',
       roles: [
-        {
-          title: 'Backend Engineer (Internship)',
-          from: 'Sep 2023',
-          to: 'Sep 2024',
-        },
+        { title: 'Mobile Engineer', from: 'Sep 2023', to: 'Sep 2024' },
+        { title: 'Backend Engineer', from: 'Sep 2023', to: 'Sep 2024' },
       ],
       highlights: [
         'Developed REST APIs for logistics and e-commerce platforms using Django and Node.js.',
         'Implemented payment gateways, authentication, and backend services alongside the mobile team.',
+        'Built and maintained production Flutter apps for Android and iOS.',
       ],
     },
     {
       company: 'DINATEN',
       companyLink: 'https://dinaten.com',
-      location: 'Santa Cruz de Tenerife, Spain',
+      location: 'Santa Cruz de Tenerife, Spain (Remote)',
       roles: [
         { title: 'Desktop Software Engineer', from: 'Aug 2023', to: 'Present' },
       ],
       highlights: [
         'Develop and maintain piXeval and pixEBAP, exam-correction apps used by academic institutions.',
         'Built cross-platform PySide6 apps and a native macOS version of piXeval in SwiftUI.',
+        'Implemented OCR/OMR answer-sheet scanning and grading with OpenCV2 and TensorFlow.',
         'Localized the apps into Catalan, Spanish, English, Euskera, and French.',
+        'Sole developer of the in-progress piXeval rebuild: a Qt-free Python engine, a FastAPI backend, a React + TypeScript UI, and Qt WebEngine / pywebview shells, including a modular rewrite of the sheet-generation scripts supplied by the product owner.',
+      ],
+    },
+    {
+      company: 'Freelance',
+      location: 'Remote',
+      roles: [
+        { title: 'Freelance Software Developer', from: '2020', to: 'Present' },
+      ],
+      highlights: [
+        'Delivered backend APIs, automation scripts, and data-processing tools for clients in Nigeria and internationally.',
       ],
     },
   ] as Experience[],
@@ -523,12 +574,12 @@ const CONFIG = {
     {
       name: 'Vaultify',
       tagline: 'Smart estate management',
-      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/74/81/8b/74818b73-889e-7840-ead6-e26915d1c73d/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/256x256bb.jpg',
+      icon: '/apps/vaultify-1.jpg',
       screenshots: [
-        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/47/4b/24/474b24ce-6662-ff7e-88bd-d5b53a7c087b/1.png/460x996bb.jpg',
-        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/4a/7b/c9/4a7bc957-cf5c-9511-cf1e-fd4ecae6f6d0/2.png/460x996bb.jpg',
-        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/58/7b/a9/587ba962-5f40-fcb3-b780-feaaf146e704/3.png/460x996bb.jpg',
-        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/d3/d9/7f/d3d97fd0-9aab-5a0f-14e9-ce3d02d12a19/6.png/460x996bb.jpg',
+        '/apps/vaultify-2.jpg',
+        '/apps/vaultify-3.jpg',
+        '/apps/vaultify-4.jpg',
+        '/apps/vaultify-5.jpg',
       ],
       highlights: [
         'Wallet and bill payments (airtime, data, cable, electricity) via Paystack',
@@ -544,12 +595,12 @@ const CONFIG = {
     {
       name: 'Tywn',
       tagline: 'Real-time safety & location sharing',
-      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/78/60/2e/78602e31-cc2e-6eaf-195d-e5a5a2d21a05/AppIcon-0-0-1x_U007emarketing-0-11-0-85-220.png/256x256bb.jpg',
+      icon: '/apps/tywn-1.jpg',
       screenshots: [
-        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/b3/56/b2/b356b2e9-fbd7-a0fd-ac95-99637a21dc8d/PHOTO-2025-08-28-13-43-04.jpg/460x996bb.jpg',
-        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/a2/9c/f2/a29cf20b-373a-395b-a396-cea2f8af4abf/IMG_1708.png/460x996bb.jpg',
-        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/cd/46/8d/cd468df5-d55f-cfa4-3b60-096b6ccf64bb/IMG_1712.png/460x996bb.jpg',
-        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/79/13/5d/79135d48-9c17-2e4a-2462-0da4d62c1adb/IMG_1713.png/460x996bb.jpg',
+        '/apps/tywn-2.jpg',
+        '/apps/tywn-3.jpg',
+        '/apps/tywn-4.jpg',
+        '/apps/tywn-5.jpg',
       ],
       highlights: [
         'Live location sharing with trusted contacts',
@@ -566,12 +617,12 @@ const CONFIG = {
     {
       name: 'Sentinel',
       tagline: 'Access management for gated communities',
-      icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ee/30/32/ee30323c-09cd-8024-6a39-09584bffd3e0/AppIcon-0-0-1x_U007emarketing-0-11-0-85-220.png/256x256bb.jpg',
+      icon: '/apps/sentinel-1.jpg',
       screenshots: [
-        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/64/6b/28/646b28a3-d280-11a5-255b-d86e94020b0c/01__U00283_U0029.jpeg/460x996bb.jpg',
-        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/59/25/3e/59253eb3-080f-dc93-31f1-546fb182fa4b/02.jpeg/460x996bb.jpg',
-        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/97/95/78/979578cf-a6c4-7e50-c3c9-f2967ebc8706/03-8.jpeg/460x996bb.jpg',
-        'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/dd/0d/ff/dd0dff45-c253-5331-e51a-d75739490680/05.jpeg/460x996bb.jpg',
+        '/apps/sentinel-2.jpg',
+        '/apps/sentinel-3.jpg',
+        '/apps/sentinel-4.jpg',
+        '/apps/sentinel-5.jpg',
       ],
       highlights: [
         'Digital visitor registration and QR check-in/check-out',
@@ -659,29 +710,7 @@ const CONFIG = {
       ],
       stack: ['Python', 'PySide6', 'SwiftUI', 'PyInstaller', 'Inno Setup'],
       link: 'https://dinaten.com/pixeval-v7/',
-    },
-    {
-      title: 'Token Realty Exchange',
-      role: 'Backend engineer',
-      context:
-        'A decentralized platform that tokenizes real-estate equity so it can be traded as a commodity.',
-      challenge:
-        'Model multi-party financial approvals, compliance, and on-chain assets in a secure backend.',
-      built: [
-        'Multi-role authentication and financial approval workflows',
-        'KYC/AML verification pipelines',
-        'Asset token creation APIs integrated with smart contracts',
-        'DAO oversight logic',
-      ],
-      stack: [
-        'FastAPI',
-        'PostgreSQL',
-        'TypeScript',
-        'LoopBack',
-        'MongoDB',
-        'AWS',
-      ],
-      link: 'https://tokenrealty.exchange',
+      preview: 'https://prmpsmart.github.io/pixeval_web/',
     },
     {
       title: 'Price Grid',
@@ -714,7 +743,7 @@ const CONFIG = {
     intro:
       'Diseño plataformas completas de principio a fin: APIs escalables y sistemas en tiempo real, apps móviles con Flutter y software de escritorio multiplataforma usado por escuelas, fintechs y urbanizaciones.',
     about: [
-      'Soy Miracle Apata, conocido en internet como prmpsmart. Soy ingeniero de software y me muevo con soltura entre backend, móvil y escritorio, sin encasillarme en un solo ámbito.',
+      'Soy Miracle Apata, conocido en internet como prmpsmart. Soy ingeniero de software y me muevo con soltura entre backend, móvil y escritorio, sin encasillarme en un solo ámbito. Empecé a programar con Python, de forma autodidacta, tras el curso CSC 201 en 2018/2019. En Jodna Technologies, una joven empresa de software fundada por un amigo, me incorporé al principio, empecé a cargo del backend y ahora también lidero el móvil (sobre todo Flutter) en proyectos para clientes.',
       'Trabajo con FastAPI, Node.js y NestJS para sistemas backend, Flutter para apps móviles multiplataforma, y PySide6 y SwiftUI para experiencias de escritorio nativas. Construyo software en producción usado por instituciones educativas, plataformas fintech y comunidades residenciales.',
       'Me importa el software que resuelve el problema real, no solo el ticket; que sigue siendo legible al crecer; que maneja los casos límite y los fallos sin dramas; y que rinde bien en cada plataforma.',
     ],
@@ -743,7 +772,7 @@ const CONFIG = {
       },
       {
         title: 'Móvil',
-        body: 'Flutter con GetX, Socket.IO, Google Maps, Firebase Cloud Messaging y Paystack.',
+        body: 'Flutter (principal) con GetX, Socket.IO, Google Maps, Firebase Cloud Messaging y Paystack, además de Kotlin, Swift y React Native.',
       },
       {
         title: 'Escritorio',

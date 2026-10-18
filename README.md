@@ -10,7 +10,7 @@ Everything the site says is in [`portfolio.config.ts`](./portfolio.config.ts): p
 
 - **Photo:** the site uses your GitHub avatar. To use your own, add an image to `public/` (e.g. `public/me.jpg`) and set `profile.photo: '/me.jpg'`. `profile.backgroundImage` sets the full-screen background separately.
 - **Meeting link:** set `profile.meetingUrl` (e.g. Calendly) to turn the header's "Hire me" button into "Schedule a meeting".
-- **Résumé:** `public/resume.pdf`, linked from the About page.
+- **Résumés:** not hosted here. `profile.resumeUrl` and `resumes` point to the PDFs and Markdown in [prmpsmart/miracle-apata-resumes](https://github.com/prmpsmart/miracle-apata-resumes), linked from the About page.
 - **Skill icons:** use [Devicon](https://devicon.dev) slugs such as `python/python-original`.
 
 ## Pages
@@ -24,6 +24,7 @@ Everything the site says is in [`portfolio.config.ts`](./portfolio.config.ts): p
 | `/experience`   | Work timeline                                     |
 | `/contact`      | Step-by-step form that opens an email draft       |
 | `/publications` | Research papers                                   |
+| `/explore`      | Interactive adventure: phone and desktop showcases, case studies |
 
 To add a page, create it in `src/pages/`, register it in `PAGES` (`src/main.tsx`) and `NAV` (`src/Layout.tsx`), and add the route to `ROUTES` in `vite.config.ts` so GitHub Pages serves it.
 

@@ -44,9 +44,21 @@ export default function CaseStudies() {
             </h3>
             <p className="mt-1 font-mono text-xs text-forest-warm">{s.role}</p>
           </div>
-          <a href={s.link} target="_blank" rel="noreferrer" className="chip">
-            {t('Visit', 'Visitar')} <FiArrowUpRight />
-          </a>
+          <div className="flex flex-wrap gap-2">
+            <a href={s.link} target="_blank" rel="noreferrer" className="chip">
+              {t('Visit', 'Visitar')} <FiArrowUpRight />
+            </a>
+            {'preview' in s && s.preview && (
+              <a
+                href={s.preview}
+                target="_blank"
+                rel="noreferrer"
+                className="chip"
+              >
+                {t('Web preview', 'Vista previa web')} <FiArrowUpRight />
+              </a>
+            )}
+          </div>
         </div>
 
         <div className="mt-6 grid gap-6 md:grid-cols-2">

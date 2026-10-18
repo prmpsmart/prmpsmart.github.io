@@ -48,6 +48,22 @@ export default function About() {
               <FiDownload /> {t('Download résumé', 'Descargar currículum')}
             </a>
           )}
+          <div className="mt-5 flex flex-wrap items-center gap-2 text-sm">
+            <span className="text-forest-muted">
+              {t('Role-specific résumés:', 'Currículums por perfil:')}
+            </span>
+            {CONFIG.resumes.map((r) => (
+              <a
+                key={r.role}
+                href={r.pdf}
+                target="_blank"
+                rel="noreferrer"
+                className="btn-outline px-3 py-1"
+              >
+                {r.role}
+              </a>
+            ))}
+          </div>
         </div>
         <div className="reveal glass overflow-hidden rounded-2xl">
           <img
