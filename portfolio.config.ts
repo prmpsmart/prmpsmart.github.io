@@ -384,26 +384,16 @@ const CONFIG = {
         'https://raw.githubusercontent.com/prmpsmart/pixeval_web/HEAD/docs/screenshots/home.jpg',
       featured: true,
     },
-    // {
-    //   title: 'Jorly Mobile',
-    //   description:
-    //     'Flutter app for a travel booking platform: flights, hotels and car rentals in one account, with Paystack and Flutterwave checkout, push notifications, and Google and Apple sign-in. Cubit state management, typed Either-based repositories.',
-    //   category: 'Mobile',
-    //   tags: ['Flutter', 'Cubit', 'Firebase', 'Paystack'],
-    //   link: 'https://dev.flyjorly.com',
-    //   image: '/apps/jorly-1.jpg',
-    //   status: 'In development',
-    // },
-    // {
-    //   title: 'Jorly API',
-    //   description:
-    //     'FastAPI backend for the Jorly travel platform: flight, hotel and car search and booking through Sabre, Paystack and Flutterwave payments, group travel, JWT auth, Celery jobs and Redis-backed search sessions.',
-    //   category: 'Backend',
-    //   tags: ['FastAPI', 'PostgreSQL', 'Redis', 'Celery'],
-    //   link: 'https://dev.flyjorly.com',
-    //   image: '/apps/jorly-1.jpg',
-    //   status: 'In development',
-    // },
+    {
+      title: 'Jorly API',
+      description:
+        'FastAPI backend for the Jorly travel platform: flight, hotel and car search and booking through Sabre, Paystack and Flutterwave payments, group travel, JWT auth, Celery jobs and Redis-backed search sessions.',
+      category: 'Backend',
+      tags: ['FastAPI', 'PostgreSQL', 'Redis', 'Celery'],
+      link: 'https://dev.flyjorly.com',
+      image: '/apps/jorly-1.jpg',
+      status: 'In development',
+    },
     {
       title: 'OxyTrack',
       description:
@@ -480,13 +470,11 @@ const CONFIG = {
       companyLink: 'https://dev.flyjorly.com',
       location: 'Canada (Remote)',
       roles: [
-        { title: 'Mobile Engineer (Contract)', from: 'May 2026', to: 'Present' },
         { title: 'Backend Engineer (Contract)', from: 'May 2026', to: 'Present' },
       ],
       highlights: [
-        'Building the Jorly travel-booking platform (flights, hotels, car rentals): a Flutter app and a FastAPI backend, currently in development. Focused on the Nigerian market, with domestic and international flights all routed through Sabre.',
+        'Building the Jorly travel-booking platform (flights, hotels, car rentals): a FastAPI backend, currently in development. Focused on the Nigerian market, with domestic and international flights all routed through Sabre.',
         'Backend: Sabre-backed search and booking behind swappable provider adapters, Paystack and Flutterwave payments, group travel, JWT auth, and Celery background jobs on PostgreSQL and Redis.',
-        'Mobile: Cubit state management, typed Either-based repositories, FCM push, and Google and Apple sign-in.',
       ],
     },
     {
