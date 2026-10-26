@@ -379,7 +379,7 @@ const CONFIG = {
         'Desktop exam-correction suite used by academic institutions: automated scanning and grading up to 30 exams per minute, Word/Excel/Moodle import, and statistics. Localized into five languages, with a native macOS build. Click through the interactive web preview of the redesigned interface.',
       category: 'Desktop',
       tags: ['PySide6', 'SwiftUI', 'PyInstaller', 'Inno Setup'],
-      link: 'https://prmpsmart.github.io/pixeval_web/',
+      link: 'https://dinaten.com/pixeval-v7/',
       image:
         'https://raw.githubusercontent.com/prmpsmart/pixeval_web/HEAD/docs/screenshots/home.jpg',
       featured: true,
@@ -738,7 +738,7 @@ const CONFIG = {
       ],
       stack: ['Python', 'PySide6', 'SwiftUI', 'PyInstaller', 'Inno Setup'],
       link: 'https://dinaten.com/pixeval-v7/',
-      // preview: 'https://prmpsmart.github.io/pixeval_web/',
+      preview: 'https://prmpsmart.github.io/pixeval_web/',
     },
     {
       title: 'Price Grid',
