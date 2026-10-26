@@ -470,7 +470,11 @@ const CONFIG = {
       companyLink: 'https://dev.flyjorly.com',
       location: 'Canada (Remote)',
       roles: [
-        { title: 'Backend Engineer (Contract)', from: 'May 2026', to: 'Present' },
+        {
+          title: 'Backend Engineer (Contract)',
+          from: 'May 2026',
+          to: 'Present',
+        },
       ],
       highlights: [
         'Building the Jorly travel-booking platform (flights, hotels, car rentals): a FastAPI backend, currently in development. Focused on the Nigerian market, with domestic and international flights all routed through Sabre.',
@@ -734,7 +738,7 @@ const CONFIG = {
       ],
       stack: ['Python', 'PySide6', 'SwiftUI', 'PyInstaller', 'Inno Setup'],
       link: 'https://dinaten.com/pixeval-v7/',
-      preview: 'https://prmpsmart.github.io/pixeval_web/',
+      // preview: 'https://prmpsmart.github.io/pixeval_web/',
     },
     {
       title: 'Price Grid',
